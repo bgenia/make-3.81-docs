@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This file documents the GNU make utility, which determines
+automatically which pieces of a large program need to be recompiled,
+and issues the commands to recompile them.
+
+This is Edition 0.70, last updated 1 April 2006,
+of The GNU Make Manual, for GNU make version 3.81.
+
+Copyright C 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
+1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2005, 2006
+Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the
+license is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and modify
+this GNU Manual, like GNU software.  Copies published by the Free
+Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on October 20, 2021 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU make: Table of Contents</title>
+
+<meta name="description" content="GNU make: Table of Contents">
+<meta name="keywords" content="GNU make: Table of Contents">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="SEC_Contents"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1>Table of Contents</h1>
+<div class="contents">
+
+<ul class="toc">
+  <li><a name="toc-Overview-of-make" href="make_1.html#Overview">1. Overview of <code>make</code></a>
+  <ul class="toc">
+    <li><a name="toc-How-to-Read-This-Manual" href="make_1.html#Reading">1.1 How to Read This Manual</a></li>
+    <li><a name="toc-Problems-and-Bugs" href="make_1.html#Bugs">1.2 Problems and Bugs</a></li>
+  </ul></li>
+  <li><a name="toc-An-Introduction-to-Makefiles" href="make_2.html#Introduction">2. An Introduction to Makefiles</a>
+  <ul class="toc">
+    <li><a name="toc-What-a-Rule-Looks-Like" href="make_2.html#Rule-Introduction">2.1 What a Rule Looks Like</a></li>
+    <li><a name="toc-A-Simple-Makefile" href="make_2.html#Simple-Makefile">2.2 A Simple Makefile</a></li>
+    <li><a name="toc-How-make-Processes-a-Makefile" href="make_2.html#How-Make-Works">2.3 How <code>make</code> Processes a Makefile</a></li>
+    <li><a name="toc-Variables-Make-Makefiles-Simpler" href="make_2.html#Variables-Simplify">2.4 Variables Make Makefiles Simpler</a></li>
+    <li><a name="toc-Letting-make-Deduce-the-Commands" href="make_2.html#make-Deduces">2.5 Letting <code>make</code> Deduce the Commands</a></li>
+    <li><a name="toc-Another-Style-of-Makefile" href="make_2.html#Combine-By-Prerequisite">2.6 Another Style of Makefile</a></li>
+    <li><a name="toc-Rules-for-Cleaning-the-Directory" href="make_2.html#Cleanup">2.7 Rules for Cleaning the Directory</a></li>
+  </ul></li>
+  <li><a name="toc-Writing-Makefiles" href="make_3.html#Makefiles">3. Writing Makefiles</a>
+  <ul class="toc">
+    <li><a name="toc-What-Makefiles-Contain" href="make_3.html#Makefile-Contents">3.1 What Makefiles Contain</a></li>
+    <li><a name="toc-What-Name-to-Give-Your-Makefile" href="make_3.html#Makefile-Names">3.2 What Name to Give Your Makefile</a></li>
+    <li><a name="toc-Including-Other-Makefiles" href="make_3.html#Include">3.3 Including Other Makefiles</a></li>
+    <li><a name="toc-The-Variable-MAKEFILES" href="make_3.html#MAKEFILES-Variable">3.4 The Variable <code>MAKEFILES</code></a></li>
+    <li><a name="toc-The-Variable-MAKEFILE_005fLIST" href="make_3.html#MAKEFILE_005fLIST-Variable">3.5 The Variable <code>MAKEFILE_LIST</code></a></li>
+    <li><a name="toc-Other-Special-Variables" href="make_3.html#Special-Variables">3.6 Other Special Variables</a></li>
+    <li><a name="toc-How-Makefiles-Are-Remade" href="make_3.html#Remaking-Makefiles">3.7 How Makefiles Are Remade</a></li>
+    <li><a name="toc-Overriding-Part-of-Another-Makefile" href="make_3.html#Overriding-Makefiles">3.8 Overriding Part of Another Makefile</a></li>
+    <li><a name="toc-How-make-Reads-a-Makefile" href="make_3.html#Reading-Makefiles">3.9 How <code>make</code> Reads a Makefile</a></li>
+    <li><a name="toc-Secondary-Expansion-1" href="make_3.html#Secondary-Expansion">3.10 Secondary Expansion</a></li>
+  </ul></li>
+  <li><a name="toc-Writing-Rules" href="make_4.html#Rules">4. Writing Rules</a>
+  <ul class="toc">
+    <li><a name="toc-Rule-Example-1" href="make_4.html#Rule-Example">4.1 Rule Example</a></li>
+    <li><a name="toc-Rule-Syntax-1" href="make_4.html#Rule-Syntax">4.2 Rule Syntax</a></li>
+    <li><a name="toc-Types-of-Prerequisites" href="make_4.html#Prerequisite-Types">4.3 Types of Prerequisites</a></li>
+    <li><a name="toc-Using-Wildcard-Characters-in-File-Names" href="make_4.html#Wildcards">4.4 Using Wildcard Characters in File Names</a>
+    <ul class="toc">
+      <li><a name="toc-Wildcard-Examples-1" href="make_4.html#Wildcard-Examples">4.4.1 Wildcard Examples</a></li>
+      <li><a name="toc-Pitfalls-of-Using-Wildcards" href="make_4.html#Wildcard-Pitfall">4.4.2 Pitfalls of Using Wildcards</a></li>
+      <li><a name="toc-The-Function-wildcard" href="make_4.html#Wildcard-Function">4.4.3 The Function <code>wildcard</code></a></li>
+    </ul></li>
+    <li><a name="toc-Searching-Directories-for-Prerequisites" href="make_4.html#Directory-Search">4.5 Searching Directories for Prerequisites</a>
+    <ul class="toc">
+      <li><a name="toc-VPATH_003a-Search-Path-for-All-Prerequisites" href="make_4.html#General-Search">4.5.1 <code>VPATH</code>: Search Path for All Prerequisites</a></li>
+      <li><a name="toc-The-vpath-Directive" href="make_4.html#Selective-Search">4.5.2 The <code>vpath</code> Directive</a></li>
+      <li><a name="toc-How-Directory-Searches-are-Performed" href="make_4.html#Search-Algorithm">4.5.3 How Directory Searches are Performed</a></li>
+      <li><a name="toc-Writing-Shell-Commands-with-Directory-Search" href="make_4.html#Commands_002fSearch">4.5.4 Writing Shell Commands with Directory Search</a></li>
+      <li><a name="toc-Directory-Search-and-Implicit-Rules" href="make_4.html#Implicit_002fSearch">4.5.5 Directory Search and Implicit Rules</a></li>
+      <li><a name="toc-Directory-Search-for-Link-Libraries" href="make_4.html#Libraries_002fSearch">4.5.6 Directory Search for Link Libraries</a></li>
+    </ul></li>
+    <li><a name="toc-Phony-Targets-1" href="make_4.html#Phony-Targets">4.6 Phony Targets</a></li>
+    <li><a name="toc-Rules-without-Commands-or-Prerequisites" href="make_4.html#Force-Targets">4.7 Rules without Commands or Prerequisites</a></li>
+    <li><a name="toc-Empty-Target-Files-to-Record-Events" href="make_4.html#Empty-Targets">4.8 Empty Target Files to Record Events</a></li>
+    <li><a name="toc-Special-Built_002din-Target-Names" href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></li>
+    <li><a name="toc-Multiple-Targets-in-a-Rule" href="make_4.html#Multiple-Targets">4.10 Multiple Targets in a Rule</a></li>
+    <li><a name="toc-Multiple-Rules-for-One-Target" href="make_4.html#Multiple-Rules">4.11 Multiple Rules for One Target</a></li>
+    <li><a name="toc-Static-Pattern-Rules" href="make_4.html#Static-Pattern">4.12 Static Pattern Rules</a>
+    <ul class="toc">
+      <li><a name="toc-Syntax-of-Static-Pattern-Rules" href="make_4.html#Static-Usage">4.12.1 Syntax of Static Pattern Rules</a></li>
+      <li><a name="toc-Static-Pattern-Rules-versus-Implicit-Rules" href="make_4.html#Static-versus-Implicit">4.12.2 Static Pattern Rules versus Implicit Rules</a></li>
+    </ul></li>
+    <li><a name="toc-Double_002dColon-Rules" href="make_4.html#Double_002dColon">4.13 Double-Colon Rules</a></li>
+    <li><a name="toc-Generating-Prerequisites-Automatically" href="make_4.html#Automatic-Prerequisites">4.14 Generating Prerequisites Automatically</a></li>
+  </ul></li>
+  <li><a name="toc-Writing-the-Commands-in-Rules" href="make_5.html#Commands">5. Writing the Commands in Rules</a>
+  <ul class="toc">
+    <li><a name="toc-Command-Syntax-1" href="make_5.html#Command-Syntax">5.1 Command Syntax</a>
+    <ul class="toc">
+      <li><a name="toc-Splitting-Command-Lines" href="make_5.html#Splitting-Lines">5.1.1 Splitting Command Lines</a></li>
+      <li><a name="toc-Using-Variables-in-Commands" href="make_5.html#Variables-in-Commands">5.1.2 Using Variables in Commands</a></li>
+    </ul></li>
+    <li><a name="toc-Command-Echoing" href="make_5.html#Echoing">5.2 Command Echoing</a></li>
+    <li><a name="toc-Command-Execution" href="make_5.html#Execution">5.3 Command Execution</a>
+    <ul class="toc">
+      <li><a name="toc-Choosing-the-Shell-1" href="make_5.html#Choosing-the-Shell">5.3.1 Choosing the Shell</a></li>
+    </ul></li>
+    <li><a name="toc-Parallel-Execution" href="make_5.html#Parallel">5.4 Parallel Execution</a></li>
+    <li><a name="toc-Errors-in-Commands" href="make_5.html#Errors">5.5 Errors in Commands</a></li>
+    <li><a name="toc-Interrupting-or-Killing-make" href="make_5.html#Interrupts">5.6 Interrupting or Killing <code>make</code></a></li>
+    <li><a name="toc-Recursive-Use-of-make" href="make_5.html#Recursion">5.7 Recursive Use of <code>make</code></a>
+    <ul class="toc">
+      <li><a name="toc-How-the-MAKE-Variable-Works" href="make_5.html#MAKE-Variable">5.7.1 How the <code>MAKE</code> Variable Works</a></li>
+      <li><a name="toc-Communicating-Variables-to-a-Sub_002dmake" href="make_5.html#Variables_002fRecursion">5.7.2 Communicating Variables to a Sub-<code>make</code></a></li>
+      <li><a name="toc-Communicating-Options-to-a-Sub_002dmake" href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></li>
+      <li><a name="toc-The-_002d_002dprint_002ddirectory-Option" href="make_5.html#g_t_002dw-Option">5.7.4 The &lsquo;<samp>--print-directory</samp>&rsquo; Option</a></li>
+    </ul></li>
+    <li><a name="toc-Defining-Canned-Command-Sequences" href="make_5.html#Sequences">5.8 Defining Canned Command Sequences</a></li>
+    <li><a name="toc-Using-Empty-Commands" href="make_5.html#Empty-Commands">5.9 Using Empty Commands</a></li>
+  </ul></li>
+  <li><a name="toc-How-to-Use-Variables" href="make_6.html#Using-Variables">6. How to Use Variables</a>
+  <ul class="toc">
+    <li><a name="toc-Basics-of-Variable-References" href="make_6.html#Reference">6.1 Basics of Variable References</a></li>
+    <li><a name="toc-The-Two-Flavors-of-Variables" href="make_6.html#Flavors">6.2 The Two Flavors of Variables</a></li>
+    <li><a name="toc-Advanced-Features-for-Reference-to-Variables" href="make_6.html#Advanced">6.3 Advanced Features for Reference to Variables</a>
+    <ul class="toc">
+      <li><a name="toc-Substitution-References" href="make_6.html#Substitution-Refs">6.3.1 Substitution References</a></li>
+      <li><a name="toc-Computed-Variable-Names" href="make_6.html#Computed-Names">6.3.2 Computed Variable Names</a></li>
+    </ul></li>
+    <li><a name="toc-How-Variables-Get-Their-Values" href="make_6.html#Values">6.4 How Variables Get Their Values</a></li>
+    <li><a name="toc-Setting-Variables" href="make_6.html#Setting">6.5 Setting Variables</a></li>
+    <li><a name="toc-Appending-More-Text-to-Variables" href="make_6.html#Appending">6.6 Appending More Text to Variables</a></li>
+    <li><a name="toc-The-override-Directive" href="make_6.html#Override-Directive">6.7 The <code>override</code> Directive</a></li>
+    <li><a name="toc-Defining-Variables-Verbatim" href="make_6.html#Defining">6.8 Defining Variables Verbatim</a></li>
+    <li><a name="toc-Variables-from-the-Environment" href="make_6.html#Environment">6.9 Variables from the Environment</a></li>
+    <li><a name="toc-Target_002dspecific-Variable-Values" href="make_6.html#Target_002dspecific">6.10 Target-specific Variable Values</a></li>
+    <li><a name="toc-Pattern_002dspecific-Variable-Values" href="make_6.html#Pattern_002dspecific">6.11 Pattern-specific Variable Values</a></li>
+  </ul></li>
+  <li><a name="toc-Conditional-Parts-of-Makefiles" href="make_7.html#Conditionals">7. Conditional Parts of Makefiles</a>
+  <ul class="toc">
+    <li><a name="toc-Example-of-a-Conditional" href="make_7.html#Conditional-Example">7.1 Example of a Conditional</a></li>
+    <li><a name="toc-Syntax-of-Conditionals" href="make_7.html#Conditional-Syntax">7.2 Syntax of Conditionals</a></li>
+    <li><a name="toc-Conditionals-that-Test-Flags" href="make_7.html#Testing-Flags">7.3 Conditionals that Test Flags</a></li>
+  </ul></li>
+  <li><a name="toc-Functions-for-Transforming-Text" href="make_8.html#Functions">8. Functions for Transforming Text</a>
+  <ul class="toc">
+    <li><a name="toc-Function-Call-Syntax" href="make_8.html#Syntax-of-Functions">8.1 Function Call Syntax</a></li>
+    <li><a name="toc-Functions-for-String-Substitution-and-Analysis" href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></li>
+    <li><a name="toc-Functions-for-File-Names" href="make_8.html#File-Name-Functions">8.3 Functions for File Names</a></li>
+    <li><a name="toc-Functions-for-Conditionals" href="make_8.html#Conditional-Functions">8.4 Functions for Conditionals</a></li>
+    <li><a name="toc-The-foreach-Function" href="make_8.html#Foreach-Function">8.5 The <code>foreach</code> Function</a></li>
+    <li><a name="toc-The-call-Function" href="make_8.html#Call-Function">8.6 The <code>call</code> Function</a></li>
+    <li><a name="toc-The-value-Function" href="make_8.html#Value-Function">8.7 The <code>value</code> Function</a></li>
+    <li><a name="toc-The-eval-Function" href="make_8.html#Eval-Function">8.8 The <code>eval</code> Function</a></li>
+    <li><a name="toc-The-origin-Function" href="make_8.html#Origin-Function">8.9 The <code>origin</code> Function</a></li>
+    <li><a name="toc-The-flavor-Function" href="make_8.html#Flavor-Function">8.10 The <code>flavor</code> Function</a></li>
+    <li><a name="toc-The-shell-Function" href="make_8.html#Shell-Function">8.11 The <code>shell</code> Function</a></li>
+    <li><a name="toc-Functions-That-Control-Make" href="make_8.html#Make-Control-Functions">8.12 Functions That Control Make</a></li>
+  </ul></li>
+  <li><a name="toc-How-to-Run-make" href="make_9.html#Running">9. How to Run <code>make</code></a>
+  <ul class="toc">
+    <li><a name="toc-Arguments-to-Specify-the-Makefile" href="make_9.html#Makefile-Arguments">9.1 Arguments to Specify the Makefile</a></li>
+    <li><a name="toc-Arguments-to-Specify-the-Goals" href="make_9.html#Goals">9.2 Arguments to Specify the Goals</a></li>
+    <li><a name="toc-Instead-of-Executing-the-Commands" href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></li>
+    <li><a name="toc-Avoiding-Recompilation-of-Some-Files" href="make_9.html#Avoiding-Compilation">9.4 Avoiding Recompilation of Some Files</a></li>
+    <li><a name="toc-Overriding-Variables" href="make_9.html#Overriding">9.5 Overriding Variables</a></li>
+    <li><a name="toc-Testing-the-Compilation-of-a-Program" href="make_9.html#Testing">9.6 Testing the Compilation of a Program</a></li>
+    <li><a name="toc-Summary-of-Options" href="make_9.html#Options-Summary">9.7 Summary of Options</a></li>
+  </ul></li>
+  <li><a name="toc-Using-Implicit-Rules" href="make_10.html#Implicit-Rules">10. Using Implicit Rules</a>
+  <ul class="toc">
+    <li><a name="toc-Using-Implicit-Rules-1" href="make_10.html#Using-Implicit">10.1 Using Implicit Rules</a></li>
+    <li><a name="toc-Catalogue-of-Implicit-Rules" href="make_10.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></li>
+    <li><a name="toc-Variables-Used-by-Implicit-Rules" href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></li>
+    <li><a name="toc-Chains-of-Implicit-Rules" href="make_10.html#Chained-Rules">10.4 Chains of Implicit Rules</a></li>
+    <li><a name="toc-Defining-and-Redefining-Pattern-Rules" href="make_10.html#Pattern-Rules">10.5 Defining and Redefining Pattern Rules</a>
+    <ul class="toc">
+      <li><a name="toc-Introduction-to-Pattern-Rules" href="make_10.html#Pattern-Intro">10.5.1 Introduction to Pattern Rules</a></li>
+      <li><a name="toc-Pattern-Rule-Examples" href="make_10.html#Pattern-Examples">10.5.2 Pattern Rule Examples</a></li>
+      <li><a name="toc-Automatic-Variables-1" href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></li>
+      <li><a name="toc-How-Patterns-Match" href="make_10.html#Pattern-Match">10.5.4 How Patterns Match</a></li>
+      <li><a name="toc-Match_002dAnything-Pattern-Rules" href="make_10.html#Match_002dAnything-Rules">10.5.5 Match-Anything Pattern Rules</a></li>
+      <li><a name="toc-Canceling-Implicit-Rules" href="make_10.html#Canceling-Rules">10.5.6 Canceling Implicit Rules</a></li>
+    </ul></li>
+    <li><a name="toc-Defining-Last_002dResort-Default-Rules" href="make_10.html#Last-Resort">10.6 Defining Last-Resort Default Rules</a></li>
+    <li><a name="toc-Old_002dFashioned-Suffix-Rules" href="make_10.html#Suffix-Rules">10.7 Old-Fashioned Suffix Rules</a></li>
+    <li><a name="toc-Implicit-Rule-Search-Algorithm" href="make_10.html#Implicit-Rule-Search">10.8 Implicit Rule Search Algorithm</a></li>
+  </ul></li>
+  <li><a name="toc-Using-make-to-Update-Archive-Files" href="make_11.html#Archives">11. Using <code>make</code> to Update Archive Files</a>
+  <ul class="toc">
+    <li><a name="toc-Archive-Members-as-Targets" href="make_11.html#Archive-Members">11.1 Archive Members as Targets</a></li>
+    <li><a name="toc-Implicit-Rule-for-Archive-Member-Targets" href="make_11.html#Archive-Update">11.2 Implicit Rule for Archive Member Targets</a>
+    <ul class="toc">
+      <li><a name="toc-Updating-Archive-Symbol-Directories" href="make_11.html#Archive-Symbols">11.2.1 Updating Archive Symbol Directories</a></li>
+    </ul></li>
+    <li><a name="toc-Dangers-When-Using-Archives" href="make_11.html#Archive-Pitfalls">11.3 Dangers When Using Archives</a></li>
+    <li><a name="toc-Suffix-Rules-for-Archive-Files" href="make_11.html#Archive-Suffix-Rules">11.4 Suffix Rules for Archive Files</a></li>
+  </ul></li>
+  <li><a name="toc-Features-of-GNU-make" href="make_12.html#Features">12. Features of GNU <code>make</code></a></li>
+  <li><a name="toc-Incompatibilities-and-Missing-Features" href="make_13.html#Missing">13. Incompatibilities and Missing Features</a></li>
+  <li><a name="toc-Makefile-Conventions-1" href="make_14.html#Makefile-Conventions">14. Makefile Conventions</a>
+  <ul class="toc">
+    <li><a name="toc-General-Conventions-for-Makefiles" href="make_14.html#Makefile-Basics">14.1 General Conventions for Makefiles</a></li>
+    <li><a name="toc-Utilities-in-Makefiles-1" href="make_14.html#Utilities-in-Makefiles">14.2 Utilities in Makefiles</a></li>
+    <li><a name="toc-Variables-for-Specifying-Commands" href="make_14.html#Command-Variables">14.3 Variables for Specifying Commands</a></li>
+    <li><a name="toc-Variables-for-Installation-Directories" href="make_14.html#Directory-Variables">14.4 Variables for Installation Directories</a></li>
+    <li><a name="toc-Standard-Targets-for-Users" href="make_14.html#Standard-Targets">14.5 Standard Targets for Users</a></li>
+    <li><a name="toc-Install-Command-Categories-1" href="make_14.html#Install-Command-Categories">14.6 Install Command Categories</a></li>
+  </ul></li>
+  <li><a name="toc-Quick-Reference-1" href="make_15.html#Quick-Reference">A. Quick Reference</a></li>
+  <li><a name="toc-Errors-Generated-by-Make" href="make_16.html#Error-Messages">B. Errors Generated by Make</a></li>
+  <li><a name="toc-Complex-Makefile-Example" href="make_17.html#Complex-Makefile">C. Complex Makefile Example</a></li>
+  <li><a name="toc-GNU-Free-Documentation-License-1" href="make_18.html#GNU-Free-Documentation-License">D. GNU Free Documentation License</a>
+  <ul class="toc">
+    <li><a name="toc-ADDENDUM_003a-How-to-use-this-License-for-your-documents" href="make_18.html#ADDENDUM_003a-How-to-use-this-License-for-your-documents">D.1 ADDENDUM: How to use this License for your documents</a></li>
+  </ul></li>
+  <li><a name="toc-Index-of-Concepts" href="make_19.html#Concept-Index">Index of Concepts</a></li>
+  <li><a name="toc-Index-of-Functions_002c-Variables_002c-_0026-Directives" href="make_26.html#Name-Index">Index of Functions, Variables, &amp; Directives</a></li>
+</ul>
+</div>
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>October 20, 2021</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

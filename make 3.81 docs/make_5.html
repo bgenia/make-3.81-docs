@@ -1,0 +1,1580 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This file documents the GNU make utility, which determines
+automatically which pieces of a large program need to be recompiled,
+and issues the commands to recompile them.
+
+This is Edition 0.70, last updated 1 April 2006,
+of The GNU Make Manual, for GNU make version 3.81.
+
+Copyright C 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
+1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2005, 2006
+Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the
+license is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and modify
+this GNU Manual, like GNU software.  Copies published by the Free
+Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on October 20, 2021 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU make: 5. Writing the Commands in Rules</title>
+
+<meta name="description" content="GNU make: 5. Writing the Commands in Rules">
+<meta name="keywords" content="GNU make: 5. Writing the Commands in Rules">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Commands"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make_4.html#Automatic-Prerequisites" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command-Syntax" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make_4.html#Rules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Writing-the-Commands-in-Rules"></a>
+<h1 class="chapter">5. Writing the Commands in Rules</h1>
+<a name="index-commands_002c-how-to-write"></a>
+<a name="index-rule-commands"></a>
+<a name="index-writing-rule-commands"></a>
+
+<p>The commands of a rule consist of one or more shell command lines to
+be executed, one at a time, in the order they appear.  Typically, the
+result of executing these commands is that the target of the rule is
+brought up to date.
+</p>
+<p>Users use many different shell programs, but commands in makefiles are
+always interpreted by &lsquo;<tt>/bin/sh</tt>&rsquo; unless the makefile specifies
+otherwise.  See section <a href="#Execution">Command Execution</a>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Command-Syntax">5.1 Command Syntax</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">              Command syntax features and pitfalls.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Echoing">5.2 Command Echoing</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                     How to control when commands are echoed.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Execution">5.3 Command Execution</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                   How commands are executed.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Parallel">5.4 Parallel Execution</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                    How commands can be executed in parallel.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Errors">5.5 Errors in Commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                      What happens after a command execution error.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Interrupts">5.6 Interrupting or Killing <code>make</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                  What happens when a command is interrupted.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Recursion">5.7 Recursive Use of <code>make</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                   Invoking <code>make</code> from makefiles.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Sequences">5.8 Defining Canned Command Sequences</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                   Defining canned sequences of commands.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Empty-Commands">5.9 Using Empty Commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">              Defining useful, do-nothing commands.
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Command-Syntax"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Commands" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Splitting-Lines" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Command-Syntax-1"></a>
+<h2 class="section">5.1 Command Syntax</h2>
+<a name="index-command-syntax"></a>
+<a name="index-syntax-of-commands"></a>
+
+<p>Makefiles have the unusual property that there are really two distinct
+syntaxes in one file.  Most of the makefile uses <code>make</code> syntax
+(see section <a href="make_3.html#Makefiles">Writing Makefiles</a>).  However, commands are meant to be
+interpreted by the shell and so they are written using shell syntax.
+The <code>make</code> program does not try to understand shell syntax: it
+performs only a very few specific translations on the content of the
+command before handing it to the shell.
+</p>
+<p>Each command line must start with a tab, except that the first command
+line may be attached to the target-and-prerequisites line with a
+semicolon in between.  <em>Any</em> line in the makefile that begins
+with a tab and appears in a &ldquo;rule context&rdquo; (that is, after a rule
+has been started until another rule or variable definition) will be
+considered a command line for that rule.  Blank lines and lines of
+just comments may appear among the command lines; they are ignored.
+</p>
+<p>Some consequences of these rules include:
+</p>
+<ul>
+<li>
+A blank line that begins with a tab is not blank: it&rsquo;s an empty
+command (see section <a href="#Empty-Commands">Using Empty Commands</a>).
+
+<a name="index-comments_002c-in-commands"></a>
+<a name="index-commands_002c-comments-in"></a>
+<a name="index-_0023-_0028comments_0029_002c-in-commands"></a>
+</li><li>
+A comment in a command line is not a <code>make</code> comment; it will be
+passed to the shell as-is.  Whether the shell treats it as a comment
+or not depends on your shell.
+
+</li><li>
+A variable definition in a &ldquo;rule context&rdquo; which is indented by a tab
+as the first character on the line, will be considered a command line,
+not a <code>make</code> variable definition, and passed to the shell.
+
+</li><li>
+A conditional expression (<code>ifdef</code>, <code>ifeq</code>,
+etc. see section <a href="make_7.html#Conditional-Syntax">Syntax of Conditionals</a>) in a &ldquo;rule
+context&rdquo; which is indented by a tab as the first character on the
+line, will be considered a command line and be passed to the shell.
+
+</li></ul>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Splitting-Lines">5.1.1 Splitting Command Lines</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">             Breaking long command lines for readability.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Variables-in-Commands">5.1.2 Using Variables in Commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">       Using <code>make</code> variables in commands.
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Splitting-Lines"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Command-Syntax" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Variables-in-Commands" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command-Syntax" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Splitting-Command-Lines"></a>
+<h3 class="subsection">5.1.1 Splitting Command Lines</h3>
+<a name="index-commands_002c-splitting"></a>
+<a name="index-splitting-commands"></a>
+<a name="index-commands_002c-backslash-_0028_005c_0029-in"></a>
+<a name="index-commands_002c-quoting-newlines-in"></a>
+<a name="index-backslash-_0028_005c_0029_002c-in-commands"></a>
+<a name="index-_005c-_0028backslash_0029_002c-in-commands"></a>
+<a name="index-quoting-newline_002c-in-commands"></a>
+<a name="index-newline_002c-quoting_002c-in-commands"></a>
+
+<p>One of the few ways in which <code>make</code> does interpret command lines
+is checking for a backslash just before the newline.  As in normal
+makefile syntax, a single command can be split into multiple lines in
+the makefile by placing a backslash before each newline.  A sequence
+of lines like this is considered a single command, and one instance of
+the shell will be invoked to run it.
+</p>
+<p>However, in contrast to how they are treated in other places in a
+makefile, backslash-newline pairs are <em>not</em> removed from the
+command.  Both the backslash and the newline characters are preserved
+and passed to the shell.  How the backslash-newline is interpreted
+depends on your shell.  If the first character of the next line
+after the backslash-newline is a tab, then that tab (and only that
+tab) is removed.  Whitespace is never added to the command.
+</p>
+<p>For example, this makefile:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">all :
+        @echo no\
+space
+        @echo no\
+        space
+        @echo one \
+        space
+        @echo one\
+         space
+</pre></td></tr></table>
+
+<p>consists of four separate shell commands where the output is:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">nospace
+nospace
+one space
+one space
+</pre></td></tr></table>
+
+<p>As a more complex example, this makefile:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">all : ; @echo 'hello \
+        world' ; echo &quot;hello \
+    world&quot;
+</pre></td></tr></table>
+
+<p>will run one shell with a command script of:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">echo 'hello \
+world' ; echo &quot;hello \
+    world&quot;
+</pre></td></tr></table>
+
+<p>which, according to shell quoting rules, will yield the following output:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">hello \
+world
+hello     world
+</pre></td></tr></table>
+
+<p>Notice how the backslash/newline pair was removed inside the string quoted
+with double quotes (<code>&quot;...&quot;</code>), but not from the string quoted with single
+quotes (<code>'...'</code>).  This is the way the default shell (&lsquo;<tt>/bin/sh</tt>&rsquo;)
+handles backslash/newline pairs.  If you specify a different shell in your
+makefiles it may treat them differently.
+</p>
+<p>Sometimes you want to split a long line inside of single quotes, but
+you don&rsquo;t want the backslash-newline to appear in the quoted content.
+This is often the case when passing scripts to languages such as Perl,
+where extraneous backslashes inside the script can change its meaning
+or even be a syntax error.  One simple way of handling this is to
+place the quoted string, or even the entire command, into a
+<code>make</code> variable then use the variable in the command.  In this
+situation the newline quoting rules for makefiles will be used, and
+the backslash-newline will be removed.  If we rewrite our example
+above using this method:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">HELLO = 'hello \
+world'
+
+all : ; @echo $(HELLO)
+</pre></td></tr></table>
+
+<p>we will get output like this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">hello world
+</pre></td></tr></table>
+
+<p>If you like, you can also use target-specific variables
+(see section <a href="make_6.html#Target_002dspecific">Target-specific Variable Values</a>) to obtain
+a tighter correspondence between the variable and the command that
+uses it.
+</p>
+<hr size="6">
+<a name="Variables-in-Commands"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Splitting-Lines" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Echoing" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command-Syntax" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Using-Variables-in-Commands"></a>
+<h3 class="subsection">5.1.2 Using Variables in Commands</h3>
+<a name="index-variable-references-in-commands"></a>
+<a name="index-commands_002c-using-variables-in"></a>
+
+<p>The other way in which <code>make</code> processes commands is by expanding
+any variable references in them (see section <a href="make_6.html#Reference">Basics of Variable References</a>).  This occurs after make has finished reading all the
+makefiles and the target is determined to be out of date; so, the
+commands for targets which are not rebuilt are never expanded.
+</p>
+<p>Variable and function references in commands have identical syntax and
+semantics to references elsewhere in the makefile.  They also have the
+same quoting rules: if you want a dollar sign to appear in your
+command, you must double it (&lsquo;<samp>$$</samp>&rsquo;).  For shells like the default
+shell, that use dollar signs to introduce variables, it&rsquo;s important to
+keep clear in your mind whether the variable you want to reference is
+a <code>make</code> variable (use a single dollar sign) or a shell variable
+(use two dollar signs).  For example:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">LIST = one two three
+all:
+        for i in $(LIST); do \
+            echo $$i; \
+        done
+</pre></td></tr></table>
+
+<p>results in the following command being passed to the shell:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">for i in one two three; do \
+    echo $i; \
+done
+</pre></td></tr></table>
+
+<p>which generates the expected result:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">one
+two
+three
+</pre></td></tr></table>
+
+<hr size="6">
+<a name="Echoing"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Variables-in-Commands" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Execution" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Command-Echoing"></a>
+<h2 class="section">5.2 Command Echoing</h2>
+<a name="index-echoing-of-commands"></a>
+<a name="index-silent-operation"></a>
+<a name="index-_0040-_0028in-commands_0029"></a>
+<a name="index-commands_002c-echoing"></a>
+<a name="index-printing-of-commands"></a>
+
+<p>Normally <code>make</code> prints each command line before it is executed.
+We call this <em>echoing</em> because it gives the appearance that you
+are typing the commands yourself.
+</p>
+<p>When a line starts with &lsquo;<samp>@</samp>&rsquo;, the echoing of that line is suppressed.
+The &lsquo;<samp>@</samp>&rsquo; is discarded before the command is passed to the shell.
+Typically you would use this for a command whose only effect is to print
+something, such as an <code>echo</code> command to indicate progress through
+the makefile:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">@echo About to make distribution files
+</pre></td></tr></table>
+
+<a name="index-_002dn"></a>
+<a name="index-_002d_002djust_002dprint"></a>
+<a name="index-_002d_002ddry_002drun"></a>
+<a name="index-_002d_002drecon"></a>
+<p>When <code>make</code> is given the flag &lsquo;<samp>-n</samp>&rsquo; or &lsquo;<samp>--just-print</samp>&rsquo;
+it only echoes commands, it won&rsquo;t execute them.  See section <a href="make_9.html#Options-Summary">Summary of Options</a>.  In this case and only this case, even the
+commands starting with &lsquo;<samp>@</samp>&rsquo; are printed.  This flag is useful for
+finding out which commands <code>make</code> thinks are necessary without
+actually doing them.
+</p>
+<a name="index-_002ds"></a>
+<a name="index-_002d_002dsilent"></a>
+<a name="index-_002d_002dquiet"></a>
+<a name="index-_002eSILENT-1"></a>
+<p>The &lsquo;<samp>-s</samp>&rsquo; or &lsquo;<samp>--silent</samp>&rsquo;
+flag to <code>make</code> prevents all echoing, as if all commands
+started with &lsquo;<samp>@</samp>&rsquo;.  A rule in the makefile for the special target
+<code>.SILENT</code> without prerequisites has the same effect
+(see section <a href="make_4.html#Special-Targets">Special Built-in Target Names</a>).
+<code>.SILENT</code> is essentially obsolete since &lsquo;<samp>@</samp>&rsquo; is more flexible.
+</p>
+<hr size="6">
+<a name="Execution"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Echoing" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Choosing-the-Shell" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Command-Execution"></a>
+<h2 class="section">5.3 Command Execution</h2>
+<a name="index-commands_002c-execution"></a>
+<a name="index-execution_002c-of-commands"></a>
+<a name="index-shell-command_002c-execution"></a>
+<a name="index-SHELL-_0028command-execution_0029"></a>
+
+<p>When it is time to execute commands to update a target, they are
+executed by invoking a new subshell for each command line.  (In
+practice, <code>make</code> may take shortcuts that do not affect the
+results.)
+</p>
+<a name="index-cd-_0028shell-command_0029"></a>
+<a name="index-shell-variables_002c-setting-in-commands"></a>
+<a name="index-commands-setting-shell-variables"></a>
+<p><strong>Please note:</strong> this implies that setting shell variables and
+invoking shell commands such as <code>cd</code> that set a context local to
+each process will not affect the following command lines.<a name="DOCF2" href="make_fot.html#FOOT2">(2)</a>  If you want to use <code>cd</code> to affect the next statement,
+put both statements in a single command line.  Then <code>make</code> will
+invoke one shell to run the entire line, and the shell will execute
+the statements in sequence.  For example:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">foo : bar/lose
+        cd $(@D) &amp;&amp; gobble $(@F) &gt; ../$@
+</pre></td></tr></table>
+
+<p>Here we use the shell AND operator (<code>&amp;&amp;</code>) so that if the
+<code>cd</code> command fails, the script will fail without trying to invoke
+the <code>gobble</code> command in the wrong directory, which could cause
+problems (in this case it would certainly cause &lsquo;<tt>../foo</tt>&rsquo; to be
+truncated, at least).
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Choosing-the-Shell">5.3.1 Choosing the Shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">          How <code>make</code> chooses the shell used
+                                  to run commands.
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Choosing-the-Shell"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Execution" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Parallel" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Execution" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Choosing-the-Shell-1"></a>
+<h3 class="subsection">5.3.1 Choosing the Shell</h3>
+<a name="index-shell_002c-choosing-the"></a>
+<a name="index-SHELL_002c-value-of"></a>
+
+<a name="index-SHELL"></a>
+<p>The program used as the shell is taken from the variable <code>SHELL</code>.
+If this variable is not set in your makefile, the program
+&lsquo;<tt>/bin/sh</tt>&rsquo; is used as the shell.
+</p>
+<a name="index-environment_002c-SHELL-in"></a>
+<p>Unlike most variables, the variable <code>SHELL</code> is never set from the
+environment.  This is because the <code>SHELL</code> environment variable is
+used to specify your personal choice of shell program for interactive
+use.  It would be very bad for personal choices like this to affect the
+functioning of makefiles.  See section <a href="make_6.html#Environment">Variables from the Environment</a>.
+</p>
+<p>Furthermore, when you do set <code>SHELL</code> in your makefile that value
+is <em>not</em> exported in the environment to commands that <code>make</code>
+invokes.  Instead, the value inherited from the user&rsquo;s environment, if
+any, is exported.  You can override this behavior by explicitly
+exporting <code>SHELL</code> (see section <a href="#Variables_002fRecursion">Communicating Variables to a Sub-<code>make</code></a>), forcing it to be passed in the
+environment to commands.
+</p>
+<a name="index-MAKESHELL-_0028MS_002dDOS-alternative-to-SHELL_0029"></a>
+<p>However, on MS-DOS and MS-Windows the value of <code>SHELL</code> in the
+environment <strong>is</strong> used, since on those systems most users do not
+set this variable, and therefore it is most likely set specifically to
+be used by <code>make</code>.  On MS-DOS, if the setting of <code>SHELL</code> is
+not suitable for <code>make</code>, you can set the variable
+<code>MAKESHELL</code> to the shell that <code>make</code> should use; if set it
+will be used as the shell instead of the value of <code>SHELL</code>.
+</p>
+<a name="Choosing-a-Shell-in-DOS-and-Windows"></a>
+<h4 class="subsubheading">Choosing a Shell in DOS and Windows</h4>
+<a name="index-shell_002c-in-DOS-and-Windows"></a>
+<a name="index-DOS_002c-choosing-a-shell-in"></a>
+<a name="index-Windows_002c-choosing-a-shell-in"></a>
+
+<p>Choosing a shell in MS-DOS and MS-Windows is much more complex than on
+other systems.
+</p>
+<a name="index-COMSPEC"></a>
+<p>On MS-DOS, if <code>SHELL</code> is not set, the value of the variable
+<code>COMSPEC</code> (which is always set) is used instead.
+</p>
+<a name="index-SHELL_002c-MS_002dDOS-specifics"></a>
+<p>The processing of lines that set the variable <code>SHELL</code> in Makefiles
+is different on MS-DOS.  The stock shell, &lsquo;<tt>command.com</tt>&rsquo;, is
+ridiculously limited in its functionality and many users of <code>make</code>
+tend to install a replacement shell.  Therefore, on MS-DOS, <code>make</code>
+examines the value of <code>SHELL</code>, and changes its behavior based on
+whether it points to a Unix-style or DOS-style shell.  This allows
+reasonable functionality even if <code>SHELL</code> points to
+&lsquo;<tt>command.com</tt>&rsquo;.
+</p>
+<p>If <code>SHELL</code> points to a Unix-style shell, <code>make</code> on MS-DOS
+additionally checks whether that shell can indeed be found; if not, it
+ignores the line that sets <code>SHELL</code>.  In MS-DOS, GNU <code>make</code>
+searches for the shell in the following places:
+</p>
+<ol>
+<li>
+In the precise place pointed to by the value of <code>SHELL</code>.  For
+example, if the makefile specifies &lsquo;<samp>SHELL = /bin/sh</samp>&rsquo;, <code>make</code>
+will look in the directory &lsquo;<tt>/bin</tt>&rsquo; on the current drive.
+
+</li><li>
+In the current directory.
+
+</li><li>
+In each of the directories in the <code>PATH</code> variable, in order.
+
+</li></ol>
+
+<p>In every directory it examines, <code>make</code> will first look for the
+specific file (&lsquo;<tt>sh</tt>&rsquo; in the example above).  If this is not found,
+it will also look in that directory for that file with one of the known
+extensions which identify executable files.  For example &lsquo;<tt>.exe</tt>&rsquo;,
+&lsquo;<tt>.com</tt>&rsquo;, &lsquo;<tt>.bat</tt>&rsquo;, &lsquo;<tt>.btm</tt>&rsquo;, &lsquo;<tt>.sh</tt>&rsquo;, and some others.
+</p>
+<p>If any of these attempts is successful, the value of <code>SHELL</code> will
+be set to the full pathname of the shell as found.  However, if none of
+these is found, the value of <code>SHELL</code> will not be changed, and thus
+the line that sets it will be effectively ignored.  This is so
+<code>make</code> will only support features specific to a Unix-style shell if
+such a shell is actually installed on the system where <code>make</code> runs.
+</p>
+<p>Note that this extended search for the shell is limited to the cases
+where <code>SHELL</code> is set from the Makefile; if it is set in the
+environment or command line, you are expected to set it to the full
+pathname of the shell, exactly as things are on Unix.
+</p>
+<p>The effect of the above DOS-specific processing is that a Makefile that
+contains &lsquo;<samp>SHELL = /bin/sh</samp>&rsquo; (as many Unix makefiles do), will work
+on MS-DOS unaltered if you have e.g. &lsquo;<tt>sh.exe</tt>&rsquo; installed in some
+directory along your <code>PATH</code>.
+</p>
+<hr size="6">
+<a name="Parallel"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Choosing-the-Shell" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Errors" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Parallel-Execution"></a>
+<h2 class="section">5.4 Parallel Execution</h2>
+<a name="index-commands_002c-execution-in-parallel"></a>
+<a name="index-parallel-execution"></a>
+<a name="index-execution_002c-in-parallel"></a>
+<a name="index-job-slots"></a>
+<a name="index-_002dj"></a>
+<a name="index-_002d_002djobs"></a>
+
+<p>GNU <code>make</code> knows how to execute several commands at once.
+Normally, <code>make</code> will execute only one command at a time, waiting
+for it to finish before executing the next.  However, the &lsquo;<samp>-j</samp>&rsquo; or
+&lsquo;<samp>--jobs</samp>&rsquo; option tells <code>make</code> to execute many commands
+simultaneously.
+</p>
+<p>On MS-DOS, the &lsquo;<samp>-j</samp>&rsquo; option has no effect, since that system doesn&rsquo;t
+support multi-processing.
+</p>
+<p>If the &lsquo;<samp>-j</samp>&rsquo; option is followed by an integer, this is the number of
+commands to execute at once; this is called the number of <em>job slots</em>.
+If there is nothing looking like an integer after the &lsquo;<samp>-j</samp>&rsquo; option,
+there is no limit on the number of job slots.  The default number of job
+slots is one, which means serial execution (one thing at a time).
+</p>
+<p>One unpleasant consequence of running several commands simultaneously is
+that output generated by the commands appears whenever each command
+sends it, so messages from different commands may be interspersed.
+</p>
+<p>Another problem is that two processes cannot both take input from the
+same device; so to make sure that only one command tries to take input
+from the terminal at once, <code>make</code> will invalidate the standard
+input streams of all but one running command.  This means that
+attempting to read from standard input will usually be a fatal error (a
+&lsquo;<samp>Broken pipe</samp>&rsquo; signal) for most child processes if there are
+several.
+<a name="index-broken-pipe"></a>
+<a name="index-standard-input"></a>
+</p>
+<p>It is unpredictable which command will have a valid standard input stream
+(which will come from the terminal, or wherever you redirect the standard
+input of <code>make</code>).  The first command run will always get it first, and
+the first command started after that one finishes will get it next, and so
+on.
+</p>
+<p>We will change how this aspect of <code>make</code> works if we find a better
+alternative.  In the mean time, you should not rely on any command using
+standard input at all if you are using the parallel execution feature; but
+if you are not using this feature, then standard input works normally in
+all commands.
+</p>
+<p>Finally, handling recursive <code>make</code> invocations raises issues.  For
+more information on this, see
+<a href="#Options_002fRecursion">Communicating Options to a Sub-<code>make</code></a>.
+</p>
+<p>If a command fails (is killed by a signal or exits with a nonzero
+status), and errors are not ignored for that command
+(see section <a href="#Errors">Errors in Commands</a>),
+the remaining command lines to remake the same target will not be run.
+If a command fails and the &lsquo;<samp>-k</samp>&rsquo; or &lsquo;<samp>--keep-going</samp>&rsquo;
+option was not given
+(see section <a href="make_9.html#Options-Summary">Summary of Options</a>),
+<code>make</code> aborts execution.  If make
+terminates for any reason (including a signal) with child processes
+running, it waits for them to finish before actually exiting.
+</p>
+<a name="index-load-average"></a>
+<a name="index-limiting-jobs-based-on-load"></a>
+<a name="index-jobs_002c-limiting-based-on-load"></a>
+<a name="index-_002dl-_0028load-average_0029"></a>
+<a name="index-_002d_002dmax_002dload"></a>
+<a name="index-_002d_002dload_002daverage"></a>
+<p>When the system is heavily loaded, you will probably want to run fewer jobs
+than when it is lightly loaded.  You can use the &lsquo;<samp>-l</samp>&rsquo; option to tell
+<code>make</code> to limit the number of jobs to run at once, based on the load
+average.  The &lsquo;<samp>-l</samp>&rsquo; or &lsquo;<samp>--max-load</samp>&rsquo;
+option is followed by a floating-point number.  For
+example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">-l 2.5
+</pre></td></tr></table>
+
+<p>will not let <code>make</code> start more than one job if the load average is
+above 2.5.  The &lsquo;<samp>-l</samp>&rsquo; option with no following number removes the
+load limit, if one was given with a previous &lsquo;<samp>-l</samp>&rsquo; option.
+</p>
+<p>More precisely, when <code>make</code> goes to start up a job, and it already has
+at least one job running, it checks the current load average; if it is not
+lower than the limit given with &lsquo;<samp>-l</samp>&rsquo;, <code>make</code> waits until the load
+average goes below that limit, or until all the other jobs finish.
+</p>
+<p>By default, there is no load limit.
+</p>
+<hr size="6">
+<a name="Errors"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Parallel" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Interrupts" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Errors-in-Commands"></a>
+<h2 class="section">5.5 Errors in Commands</h2>
+<a name="index-errors-_0028in-commands_0029"></a>
+<a name="index-commands_002c-errors-in"></a>
+<a name="index-exit-status-_0028errors_0029"></a>
+
+<p>After each shell command returns, <code>make</code> looks at its exit status.
+If the command completed successfully, the next command line is executed
+in a new shell; after the last command line is finished, the rule is
+finished.
+</p>
+<p>If there is an error (the exit status is nonzero), <code>make</code> gives up on
+the current rule, and perhaps on all rules.
+</p>
+<p>Sometimes the failure of a certain command does not indicate a problem.
+For example, you may use the <code>mkdir</code> command to ensure that a
+directory exists.  If the directory already exists, <code>mkdir</code> will
+report an error, but you probably want <code>make</code> to continue regardless.
+</p>
+<a name="index-_002d-_0028in-commands_0029"></a>
+<p>To ignore errors in a command line, write a &lsquo;<samp>-</samp>&rsquo; at the beginning of
+the line&rsquo;s text (after the initial tab).  The &lsquo;<samp>-</samp>&rsquo; is discarded before
+the command is passed to the shell for execution.
+</p>
+<p>For example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">clean:
+        -rm -f *.o
+</pre></td></tr></table>
+<a name="index-rm-_0028shell-command_0029-3"></a>
+
+<p>This causes <code>rm</code> to continue even if it is unable to remove a file.
+</p>
+<a name="index-_002di"></a>
+<a name="index-_002d_002dignore_002derrors"></a>
+<a name="index-_002eIGNORE-1"></a>
+<p>When you run <code>make</code> with the &lsquo;<samp>-i</samp>&rsquo; or &lsquo;<samp>--ignore-errors</samp>&rsquo;
+flag, errors are ignored in all commands of all rules.  A rule in the
+makefile for the special target <code>.IGNORE</code> has the same effect, if
+there are no prerequisites.  These ways of ignoring errors are obsolete
+because &lsquo;<samp>-</samp>&rsquo; is more flexible.
+</p>
+<p>When errors are to be ignored, because of either a &lsquo;<samp>-</samp>&rsquo; or the
+&lsquo;<samp>-i</samp>&rsquo; flag, <code>make</code> treats an error return just like success,
+except that it prints out a message that tells you the status code
+the command exited with, and says that the error has been ignored.
+</p>
+<p>When an error happens that <code>make</code> has not been told to ignore,
+it implies that the current target cannot be correctly remade, and neither
+can any other that depends on it either directly or indirectly.  No further
+commands will be executed for these targets, since their preconditions
+have not been achieved.
+</p>
+
+<a name="index-_002dk"></a>
+<a name="index-_002d_002dkeep_002dgoing"></a>
+<p>Normally <code>make</code> gives up immediately in this circumstance, returning a
+nonzero status.  However, if the &lsquo;<samp>-k</samp>&rsquo; or &lsquo;<samp>--keep-going</samp>&rsquo;
+flag is specified, <code>make</code>
+continues to consider the other prerequisites of the pending targets,
+remaking them if necessary, before it gives up and returns nonzero status.
+For example, after an error in compiling one object file, &lsquo;<samp>make -k</samp>&rsquo;
+will continue compiling other object files even though it already knows
+that linking them will be impossible.  See section <a href="make_9.html#Options-Summary">Summary of Options</a>.
+</p>
+<p>The usual behavior assumes that your purpose is to get the specified
+targets up to date; once <code>make</code> learns that this is impossible, it
+might as well report the failure immediately.  The &lsquo;<samp>-k</samp>&rsquo; option says
+that the real purpose is to test as many of the changes made in the
+program as possible, perhaps to find several independent problems so
+that you can correct them all before the next attempt to compile.  This
+is why Emacs&rsquo; <code>compile</code> command passes the &lsquo;<samp>-k</samp>&rsquo; flag by
+default.
+<a name="index-Emacs-_0028M_002dx-compile_0029"></a>
+</p>
+<a name="index-_002eDELETE_005fON_005fERROR-1"></a>
+<a name="index-deletion-of-target-files"></a>
+<a name="index-removal-of-target-files"></a>
+<a name="index-target_002c-deleting-on-error"></a>
+<p>Usually when a command fails, if it has changed the target file at all,
+the file is corrupted and cannot be used&mdash;or at least it is not
+completely updated.  Yet the file&rsquo;s time stamp says that it is now up to
+date, so the next time <code>make</code> runs, it will not try to update that
+file.  The situation is just the same as when the command is killed by a
+signal; see section <a href="#Interrupts">Interrupting or Killing <code>make</code></a>.  So generally the right thing to do is to
+delete the target file if the command fails after beginning to change
+the file.  <code>make</code> will do this if <code>.DELETE_ON_ERROR</code> appears
+as a target.  This is almost always what you want <code>make</code> to do, but
+it is not historical practice; so for compatibility, you must explicitly
+request it.
+</p>
+<hr size="6">
+<a name="Interrupts"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Errors" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Recursion" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Interrupting-or-Killing-make"></a>
+<h2 class="section">5.6 Interrupting or Killing <code>make</code></h2>
+<a name="index-interrupt"></a>
+<a name="index-signal"></a>
+<a name="index-deletion-of-target-files-1"></a>
+<a name="index-removal-of-target-files-1"></a>
+<a name="index-target_002c-deleting-on-interrupt"></a>
+<a name="index-killing-_0028interruption_0029"></a>
+
+<p>If <code>make</code> gets a fatal signal while a command is executing, it may
+delete the target file that the command was supposed to update.  This is
+done if the target file&rsquo;s last-modification time has changed since
+<code>make</code> first checked it.
+</p>
+<p>The purpose of deleting the target is to make sure that it is remade from
+scratch when <code>make</code> is next run.  Why is this?  Suppose you type
+<kbd>Ctrl-c</kbd> while a compiler is running, and it has begun to write an
+object file &lsquo;<tt>foo.o</tt>&rsquo;.  The <kbd>Ctrl-c</kbd> kills the compiler, resulting
+in an incomplete file whose last-modification time is newer than the source
+file &lsquo;<tt>foo.c</tt>&rsquo;.  But <code>make</code> also receives the <kbd>Ctrl-c</kbd> signal
+and deletes this incomplete file.  If <code>make</code> did not do this, the next
+invocation of <code>make</code> would think that &lsquo;<tt>foo.o</tt>&rsquo; did not require
+updating&mdash;resulting in a strange error message from the linker when it
+tries to link an object file half of which is missing.
+</p>
+<a name="index-_002ePRECIOUS-1"></a>
+<p>You can prevent the deletion of a target file in this way by making the
+special target <code>.PRECIOUS</code> depend on it.  Before remaking a target,
+<code>make</code> checks to see whether it appears on the prerequisites of
+<code>.PRECIOUS</code>, and thereby decides whether the target should be deleted
+if a signal happens.  Some reasons why you might do this are that the
+target is updated in some atomic fashion, or exists only to record a
+modification-time (its contents do not matter), or must exist at all
+times to prevent other sorts of trouble.
+</p>
+<hr size="6">
+<a name="Recursion"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Interrupts" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#MAKE-Variable" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Recursive-Use-of-make"></a>
+<h2 class="section">5.7 Recursive Use of <code>make</code></h2>
+<a name="index-recursion"></a>
+<a name="index-subdirectories_002c-recursion-for"></a>
+
+<p>Recursive use of <code>make</code> means using <code>make</code> as a command in a
+makefile.  This technique is useful when you want separate makefiles for
+various subsystems that compose a larger system.  For example, suppose you
+have a subdirectory &lsquo;<tt>subdir</tt>&rsquo; which has its own makefile, and you would
+like the containing directory&rsquo;s makefile to run <code>make</code> on the
+subdirectory.  You can do it by writing this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">subsystem:
+        cd subdir &amp;&amp; $(MAKE)
+</pre></td></tr></table>
+
+<p>or, equivalently, this (see section <a href="make_9.html#Options-Summary">Summary of Options</a>):
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">subsystem:
+        $(MAKE) -C subdir
+</pre></td></tr></table>
+<a name="index-_002dC"></a>
+<a name="index-_002d_002ddirectory"></a>
+
+<p>You can write recursive <code>make</code> commands just by copying this example,
+but there are many things to know about how they work and why, and about
+how the sub-<code>make</code> relates to the top-level <code>make</code>.  You may
+also find it useful to declare targets that invoke recursive
+<code>make</code> commands as &lsquo;<samp>.PHONY</samp>&rsquo; (for more discussion on when
+this is useful, see <a href="make_4.html#Phony-Targets">Phony Targets</a>).
+</p>
+<a name="index-CURDIR"></a>
+<p>For your convenience, when GNU <code>make</code> starts (after it has
+processed any <code>-C</code> options) it sets the variable <code>CURDIR</code> to
+the pathname of the current working directory.  This value is never
+touched by <code>make</code> again: in particular note that if you include
+files from other directories the value of <code>CURDIR</code> does not
+change.  The value has the same precedence it would have if it were
+set in the makefile (by default, an environment variable <code>CURDIR</code>
+will not override this value).  Note that setting this variable has no
+impact on the operation of <code>make</code> (it does not cause <code>make</code>
+to change its working directory, for example).
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#MAKE-Variable">5.7.1 How the <code>MAKE</code> Variable Works</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               The special effects of using &lsquo;<samp>$(MAKE)</samp>&rsquo;.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Variables_002fRecursion">5.7.2 Communicating Variables to a Sub-<code>make</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         How to communicate variables to a sub-<code>make</code>.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">           How to communicate options to a sub-<code>make</code>.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#g_t_002dw-Option">5.7.4 The &lsquo;<samp>--print-directory</samp>&rsquo; Option</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                   How the &lsquo;<samp>-w</samp>&rsquo; or &lsquo;<samp>--print-directory</samp>&rsquo; option
+                                  helps debug use of recursive <code>make</code> commands.
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="MAKE-Variable"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Recursion" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Variables_002fRecursion" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Recursion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-the-MAKE-Variable-Works"></a>
+<h3 class="subsection">5.7.1 How the <code>MAKE</code> Variable Works</h3>
+<a name="index-MAKE"></a>
+<a name="index-recursion_002c-and-MAKE-variable"></a>
+
+<p>Recursive <code>make</code> commands should always use the variable <code>MAKE</code>,
+not the explicit command name &lsquo;<samp>make</samp>&rsquo;, as shown here:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">subsystem:
+        cd subdir &amp;&amp; $(MAKE)
+</pre></td></tr></table>
+
+<p>The value of this variable is the file name with which <code>make</code> was
+invoked.  If this file name was &lsquo;<tt>/bin/make</tt>&rsquo;, then the command executed
+is &lsquo;<samp>cd subdir &amp;&amp; /bin/make</samp>&rsquo;.  If you use a special version of
+<code>make</code> to run the top-level makefile, the same special version will be
+executed for recursive invocations.
+<a name="index-cd-_0028shell-command_0029-1"></a>
+</p>
+<a name="index-_002b_002c-and-commands"></a>
+<p>As a special feature, using the variable <code>MAKE</code> in the commands of
+a rule alters the effects of the &lsquo;<samp>-t</samp>&rsquo; (&lsquo;<samp>--touch</samp>&rsquo;), &lsquo;<samp>-n</samp>&rsquo;
+(&lsquo;<samp>--just-print</samp>&rsquo;), or &lsquo;<samp>-q</samp>&rsquo; (&lsquo;<samp>--question</samp>&rsquo;) option.
+Using the <code>MAKE</code> variable has the same effect as using a &lsquo;<samp>+</samp>&rsquo;
+character at the beginning of the command line.  See section <a href="make_9.html#Instead-of-Execution">Instead of Executing the Commands</a>.  This special feature
+is only enabled if the <code>MAKE</code> variable appears directly in the
+command script: it does not apply if the <code>MAKE</code> variable is
+referenced through expansion of another variable.  In the latter case
+you must use the &lsquo;<samp>+</samp>&rsquo; token to get these special effects.
+</p>
+<p>Consider the command &lsquo;<samp>make -t</samp>&rsquo; in the above example.  (The
+&lsquo;<samp>-t</samp>&rsquo; option marks targets as up to date without actually running
+any commands; see <a href="make_9.html#Instead-of-Execution">Instead of Executing the Commands</a>.)  Following the usual
+definition of &lsquo;<samp>-t</samp>&rsquo;, a &lsquo;<samp>make -t</samp>&rsquo; command in the example would
+create a file named &lsquo;<tt>subsystem</tt>&rsquo; and do nothing else.  What you
+really want it to do is run &lsquo;<samp>cd subdir &amp;&amp; make -t</samp>&rsquo;; but that would
+require executing the command, and &lsquo;<samp>-t</samp>&rsquo; says not to execute
+commands.
+<a name="index-_002dt_002c-and-recursion"></a>
+<a name="index-recursion_002c-and-_002dt"></a>
+<a name="index-_002d_002dtouch_002c-and-recursion"></a>
+</p>
+<p>The special feature makes this do what you want: whenever a command
+line of a rule contains the variable <code>MAKE</code>, the flags &lsquo;<samp>-t</samp>&rsquo;,
+&lsquo;<samp>-n</samp>&rsquo; and &lsquo;<samp>-q</samp>&rsquo; do not apply to that line.  Command lines
+containing <code>MAKE</code> are executed normally despite the presence of a
+flag that causes most commands not to be run.  The usual
+<code>MAKEFLAGS</code> mechanism passes the flags to the sub-<code>make</code>
+(see section <a href="#Options_002fRecursion">Communicating Options to a Sub-<code>make</code></a>), so your request to touch the files, or print the
+commands, is propagated to the subsystem.
+</p>
+<hr size="6">
+<a name="Variables_002fRecursion"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#MAKE-Variable" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Options_002fRecursion" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Recursion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Communicating-Variables-to-a-Sub_002dmake"></a>
+<h3 class="subsection">5.7.2 Communicating Variables to a Sub-<code>make</code></h3>
+<a name="index-sub_002dmake"></a>
+<a name="index-environment_002c-and-recursion"></a>
+<a name="index-exporting-variables"></a>
+<a name="index-variables_002c-environment"></a>
+<a name="index-variables_002c-exporting"></a>
+<a name="index-recursion_002c-and-environment"></a>
+<a name="index-recursion_002c-and-variables"></a>
+
+<p>Variable values of the top-level <code>make</code> can be passed to the
+sub-<code>make</code> through the environment by explicit request.  These
+variables are defined in the sub-<code>make</code> as defaults, but do not
+override what is specified in the makefile used by the sub-<code>make</code>
+makefile unless you use the &lsquo;<samp>-e</samp>&rsquo; switch (see section <a href="make_9.html#Options-Summary">Summary of Options</a>).
+</p>
+<p>To pass down, or <em>export</em>, a variable, <code>make</code> adds the variable
+and its value to the environment for running each command.  The
+sub-<code>make</code>, in turn, uses the environment to initialize its table
+of variable values.  See section <a href="make_6.html#Environment">Variables from the Environment</a>.
+</p>
+<p>Except by explicit request, <code>make</code> exports a variable only if it
+is either defined in the environment initially or set on the command
+line, and if its name consists only of letters, numbers, and underscores.
+Some shells cannot cope with environment variable names consisting of
+characters other than letters, numbers, and underscores.
+</p>
+<a name="index-SHELL_002c-exported-value"></a>
+<p>The value of the <code>make</code> variable <code>SHELL</code> is not exported.
+Instead, the value of the <code>SHELL</code> variable from the invoking
+environment is passed to the sub-<code>make</code>.  You can force
+<code>make</code> to export its value for <code>SHELL</code> by using the
+<code>export</code> directive, described below.  See section <a href="#Choosing-the-Shell">Choosing the Shell</a>.
+</p>
+<p>The special variable <code>MAKEFLAGS</code> is always exported (unless you
+unexport it).  <code>MAKEFILES</code> is exported if you set it to anything.
+</p>
+<p><code>make</code> automatically passes down variable values that were defined
+on the command line, by putting them in the <code>MAKEFLAGS</code> variable.
+See section <a href="#Options_002fRecursion">Communicating Options to a Sub-<code>make</code></a>.
+</p>
+<p>Variables are <em>not</em> normally passed down if they were created by
+default by <code>make</code> (see section <a href="make_10.html#Implicit-Variables">Variables Used by Implicit Rules</a>).  The sub-<code>make</code> will define these for
+itself.
+</p>
+<a name="index-export"></a>
+<p>If you want to export specific variables to a sub-<code>make</code>, use the
+<code>export</code> directive, like this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">export <var>variable</var> &hellip;
+</pre></td></tr></table>
+
+<a name="index-unexport"></a>
+<p>If you want to <em>prevent</em> a variable from being exported, use the
+<code>unexport</code> directive, like this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">unexport <var>variable</var> &hellip;
+</pre></td></tr></table>
+
+<p>In both of these forms, the arguments to <code>export</code> and
+<code>unexport</code> are expanded, and so could be variables or functions
+which expand to a (list of) variable names to be (un)exported.
+</p>
+<p>As a convenience, you can define a variable and export it at the same
+time by doing:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">export <var>variable</var> = value
+</pre></td></tr></table>
+
+<p>has the same result as:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example"><var>variable</var> = value
+export <var>variable</var>
+</pre></td></tr></table>
+
+<p>and
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">export <var>variable</var> := value
+</pre></td></tr></table>
+
+<p>has the same result as:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example"><var>variable</var> := value
+export <var>variable</var>
+</pre></td></tr></table>
+
+<p>Likewise,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">export <var>variable</var> += value
+</pre></td></tr></table>
+
+<p>is just like:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example"><var>variable</var> += value
+export <var>variable</var>
+</pre></td></tr></table>
+
+<p>See section <a href="make_6.html#Appending">Appending More Text to Variables</a>.
+</p>
+<p>You may notice that the <code>export</code> and <code>unexport</code> directives
+work in <code>make</code> in the same way they work in the shell, <code>sh</code>.
+</p>
+<p>If you want all variables to be exported by default, you can use
+<code>export</code> by itself:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">export
+</pre></td></tr></table>
+
+<p>This tells <code>make</code> that variables which are not explicitly mentioned
+in an <code>export</code> or <code>unexport</code> directive should be exported.
+Any variable given in an <code>unexport</code> directive will still <em>not</em>
+be exported.  If you use <code>export</code> by itself to export variables by
+default, variables whose names contain characters other than
+alphanumerics and underscores will not be exported unless specifically
+mentioned in an <code>export</code> directive.
+</p>
+<a name="index-_002eEXPORT_005fALL_005fVARIABLES-1"></a>
+<p>The behavior elicited by an <code>export</code> directive by itself was the
+default in older versions of GNU <code>make</code>.  If your makefiles depend
+on this behavior and you want to be compatible with old versions of
+<code>make</code>, you can write a rule for the special target
+<code>.EXPORT_ALL_VARIABLES</code> instead of using the <code>export</code> directive.
+This will be ignored by old <code>make</code>s, while the <code>export</code>
+directive will cause a syntax error.
+<a name="index-compatibility-in-exporting"></a>
+</p>
+<p>Likewise, you can use <code>unexport</code> by itself to tell <code>make</code>
+<em>not</em> to export variables by default.  Since this is the default
+behavior, you would only need to do this if <code>export</code> had been used
+by itself earlier (in an included makefile, perhaps).  You
+<strong>cannot</strong> use <code>export</code> and <code>unexport</code> by themselves to
+have variables exported for some commands and not for others.  The last
+<code>export</code> or <code>unexport</code> directive that appears by itself
+determines the behavior for the entire run of <code>make</code>.
+</p>
+<a name="index-MAKELEVEL"></a>
+<a name="index-recursion_002c-level-of"></a>
+<p>As a special feature, the variable <code>MAKELEVEL</code> is changed when it
+is passed down from level to level.  This variable&rsquo;s value is a string
+which is the depth of the level as a decimal number.  The value is
+&lsquo;<samp>0</samp>&rsquo; for the top-level <code>make</code>; &lsquo;<samp>1</samp>&rsquo; for a sub-<code>make</code>,
+&lsquo;<samp>2</samp>&rsquo; for a sub-sub-<code>make</code>, and so on.  The incrementation
+happens when <code>make</code> sets up the environment for a command.
+</p>
+<p>The main use of <code>MAKELEVEL</code> is to test it in a conditional
+directive (see section <a href="make_7.html#Conditionals">Conditional Parts of Makefiles</a>); this
+way you can write a makefile that behaves one way if run recursively and
+another way if run directly by you.
+</p>
+<a name="index-MAKEFILES-1"></a>
+<p>You can use the variable <code>MAKEFILES</code> to cause all sub-<code>make</code>
+commands to use additional makefiles.  The value of <code>MAKEFILES</code> is
+a whitespace-separated list of file names.  This variable, if defined in
+the outer-level makefile, is passed down through the environment; then
+it serves as a list of extra makefiles for the sub-<code>make</code> to read
+before the usual or specified ones.  See section <a href="make_3.html#MAKEFILES-Variable">The Variable <code>MAKEFILES</code></a>.
+</p>
+<hr size="6">
+<a name="Options_002fRecursion"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Variables_002fRecursion" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_002dw-Option" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Recursion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Communicating-Options-to-a-Sub_002dmake"></a>
+<h3 class="subsection">5.7.3 Communicating Options to a Sub-<code>make</code></h3>
+<a name="index-options_002c-and-recursion"></a>
+<a name="index-recursion_002c-and-options"></a>
+
+<a name="index-MAKEFLAGS"></a>
+<p>Flags such as &lsquo;<samp>-s</samp>&rsquo; and &lsquo;<samp>-k</samp>&rsquo; are passed automatically to the
+sub-<code>make</code> through the variable <code>MAKEFLAGS</code>.  This variable is
+set up automatically by <code>make</code> to contain the flag letters that
+<code>make</code> received.  Thus, if you do &lsquo;<samp>make -ks</samp>&rsquo; then
+<code>MAKEFLAGS</code> gets the value &lsquo;<samp>ks</samp>&rsquo;.
+</p>
+<p>As a consequence, every sub-<code>make</code> gets a value for <code>MAKEFLAGS</code>
+in its environment.  In response, it takes the flags from that value and
+processes them as if they had been given as arguments.
+See section <a href="make_9.html#Options-Summary">Summary of Options</a>.
+</p>
+<a name="index-command-line-variable-definitions_002c-and-recursion"></a>
+<a name="index-variables_002c-command-line_002c-and-recursion"></a>
+<a name="index-recursion_002c-and-command-line-variable-definitions"></a>
+<p>Likewise variables defined on the command line are passed to the
+sub-<code>make</code> through <code>MAKEFLAGS</code>.  Words in the value of
+<code>MAKEFLAGS</code> that contain &lsquo;<samp>=</samp>&rsquo;, <code>make</code> treats as variable
+definitions just as if they appeared on the command line.
+See section <a href="make_9.html#Overriding">Overriding Variables</a>.
+</p>
+<a name="index-_002dC_002c-and-recursion"></a>
+<a name="index-_002df_002c-and-recursion"></a>
+<a name="index-_002do_002c-and-recursion"></a>
+<a name="index-_002dW_002c-and-recursion"></a>
+<a name="index-_002d_002ddirectory_002c-and-recursion"></a>
+<a name="index-_002d_002dfile_002c-and-recursion"></a>
+<a name="index-_002d_002dold_002dfile_002c-and-recursion"></a>
+<a name="index-_002d_002dassume_002dold_002c-and-recursion"></a>
+<a name="index-_002d_002dassume_002dnew_002c-and-recursion"></a>
+<a name="index-_002d_002dnew_002dfile_002c-and-recursion"></a>
+<a name="index-recursion_002c-and-_002dC"></a>
+<a name="index-recursion_002c-and-_002df"></a>
+<a name="index-recursion_002c-and-_002do"></a>
+<a name="index-recursion_002c-and-_002dW"></a>
+<p>The options &lsquo;<samp>-C</samp>&rsquo;, &lsquo;<samp>-f</samp>&rsquo;, &lsquo;<samp>-o</samp>&rsquo;, and &lsquo;<samp>-W</samp>&rsquo; are not put
+into <code>MAKEFLAGS</code>; these options are not passed down.
+</p>
+<a name="index-_002dj_002c-and-recursion"></a>
+<a name="index-_002d_002djobs_002c-and-recursion"></a>
+<a name="index-recursion_002c-and-_002dj"></a>
+<a name="index-job-slots_002c-and-recursion"></a>
+<p>The &lsquo;<samp>-j</samp>&rsquo; option is a special case (see section <a href="#Parallel">Parallel Execution</a>).
+If you set it to some numeric value &lsquo;<samp>N</samp>&rsquo; and your operating system
+supports it (most any UNIX system will; others typically won&rsquo;t), the
+parent <code>make</code> and all the sub-<code>make</code>s will communicate to
+ensure that there are only &lsquo;<samp>N</samp>&rsquo; jobs running at the same time
+between them all.  Note that any job that is marked recursive
+(see section <a href="make_9.html#Instead-of-Execution">Instead of Executing the Commands</a>)
+doesn&rsquo;t count against the total jobs (otherwise we could get &lsquo;<samp>N</samp>&rsquo;
+sub-<code>make</code>s running and have no slots left over for any real work!)
+</p>
+<p>If your operating system doesn&rsquo;t support the above communication, then
+&lsquo;<samp>-j 1</samp>&rsquo; is always put into <code>MAKEFLAGS</code> instead of the value you
+specified.  This is because if the &lsquo;<samp>-j</samp>&rsquo; option were passed down
+to sub-<code>make</code>s, you would get many more jobs running in parallel
+than you asked for.  If you give &lsquo;<samp>-j</samp>&rsquo; with no numeric argument,
+meaning to run as many jobs as possible in parallel, this is passed
+down, since multiple infinities are no more than one.
+</p>
+<p>If you do not want to pass the other flags down, you must change the
+value of <code>MAKEFLAGS</code>, like this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">subsystem:
+        cd subdir &amp;&amp; $(MAKE) MAKEFLAGS=
+</pre></td></tr></table>
+
+<a name="index-MAKEOVERRIDES"></a>
+<p>The command line variable definitions really appear in the variable
+<code>MAKEOVERRIDES</code>, and <code>MAKEFLAGS</code> contains a reference to this
+variable.  If you do want to pass flags down normally, but don&rsquo;t want to
+pass down the command line variable definitions, you can reset
+<code>MAKEOVERRIDES</code> to empty, like this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">MAKEOVERRIDES =
+</pre></td></tr></table>
+
+<a name="index-Arg-list-too-long"></a>
+<a name="index-E2BIG"></a>
+<p>This is not usually useful to do.  However, some systems have a small
+fixed limit on the size of the environment, and putting so much
+information into the value of <code>MAKEFLAGS</code> can exceed it.  If you
+see the error message &lsquo;<samp>Arg list too long</samp>&rsquo;, this may be the problem.
+<a name="index-_002ePOSIX"></a>
+<a name="index-POSIX_002e2"></a>
+(For strict compliance with POSIX.2, changing <code>MAKEOVERRIDES</code> does
+not affect <code>MAKEFLAGS</code> if the special target &lsquo;<samp>.POSIX</samp>&rsquo; appears
+in the makefile.  You probably do not care about this.)
+</p>
+<a name="index-MFLAGS"></a>
+<p>A similar variable <code>MFLAGS</code> exists also, for historical
+compatibility.  It has the same value as <code>MAKEFLAGS</code> except that it
+does not contain the command line variable definitions, and it always
+begins with a hyphen unless it is empty (<code>MAKEFLAGS</code> begins with a
+hyphen only when it begins with an option that has no single-letter
+version, such as &lsquo;<samp>--warn-undefined-variables</samp>&rsquo;).  <code>MFLAGS</code> was
+traditionally used explicitly in the recursive <code>make</code> command, like
+this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">subsystem:
+        cd subdir &amp;&amp; $(MAKE) $(MFLAGS)
+</pre></td></tr></table>
+
+<p>but now <code>MAKEFLAGS</code> makes this usage redundant.  If you want your
+makefiles to be compatible with old <code>make</code> programs, use this
+technique; it will work fine with more modern <code>make</code> versions too.
+</p>
+<a name="index-setting-options-from-environment"></a>
+<a name="index-options_002c-setting-from-environment"></a>
+<a name="index-setting-options-in-makefiles"></a>
+<a name="index-options_002c-setting-in-makefiles"></a>
+<p>The <code>MAKEFLAGS</code> variable can also be useful if you want to have
+certain options, such as &lsquo;<samp>-k</samp>&rsquo; (see section <a href="make_9.html#Options-Summary">Summary of Options</a>), set each time you run <code>make</code>.  You simply put a value for
+<code>MAKEFLAGS</code> in your environment.  You can also set <code>MAKEFLAGS</code> in
+a makefile, to specify additional flags that should also be in effect for
+that makefile.  (Note that you cannot use <code>MFLAGS</code> this way.  That
+variable is set only for compatibility; <code>make</code> does not interpret a
+value you set for it in any way.)
+</p>
+<p>When <code>make</code> interprets the value of <code>MAKEFLAGS</code> (either from the
+environment or from a makefile), it first prepends a hyphen if the value
+does not already begin with one.  Then it chops the value into words
+separated by blanks, and parses these words as if they were options given
+on the command line (except that &lsquo;<samp>-C</samp>&rsquo;, &lsquo;<samp>-f</samp>&rsquo;, &lsquo;<samp>-h</samp>&rsquo;,
+&lsquo;<samp>-o</samp>&rsquo;, &lsquo;<samp>-W</samp>&rsquo;, and their long-named versions are ignored; and there
+is no error for an invalid option).
+</p>
+<p>If you do put <code>MAKEFLAGS</code> in your environment, you should be sure not
+to include any options that will drastically affect the actions of
+<code>make</code> and undermine the purpose of makefiles and of <code>make</code>
+itself.  For instance, the &lsquo;<samp>-t</samp>&rsquo;, &lsquo;<samp>-n</samp>&rsquo;, and &lsquo;<samp>-q</samp>&rsquo; options, if
+put in one of these variables, could have disastrous consequences and would
+certainly have at least surprising and probably annoying effects.
+</p>
+<hr size="6">
+<a name="g_t_002dw-Option"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Options_002fRecursion" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Sequences" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Recursion" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-_002d_002dprint_002ddirectory-Option"></a>
+<h3 class="subsection">5.7.4 The &lsquo;<samp>--print-directory</samp>&rsquo; Option</h3>
+<a name="index-directories_002c-printing-them"></a>
+<a name="index-printing-directories"></a>
+<a name="index-recursion_002c-and-printing-directories"></a>
+
+<p>If you use several levels of recursive <code>make</code> invocations, the
+&lsquo;<samp>-w</samp>&rsquo; or &lsquo;<samp>--print-directory</samp>&rsquo; option can make the output a
+lot easier to understand by showing each directory as <code>make</code>
+starts processing it and as <code>make</code> finishes processing it.  For
+example, if &lsquo;<samp>make -w</samp>&rsquo; is run in the directory &lsquo;<tt>/u/gnu/make</tt>&rsquo;,
+<code>make</code> will print a line of the form:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">make: Entering directory `/u/gnu/make'.
+</pre></td></tr></table>
+
+<p>before doing anything else, and a line of the form:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">make: Leaving directory `/u/gnu/make'.
+</pre></td></tr></table>
+
+<p>when processing is completed.
+</p>
+<a name="index-_002dC_002c-and-_002dw"></a>
+<a name="index-_002d_002ddirectory_002c-and-_002d_002dprint_002ddirectory"></a>
+<a name="index-recursion_002c-and-_002dw"></a>
+<a name="index-_002dw_002c-and-_002dC"></a>
+<a name="index-_002dw_002c-and-recursion"></a>
+<a name="index-_002d_002dprint_002ddirectory_002c-and-_002d_002ddirectory"></a>
+<a name="index-_002d_002dprint_002ddirectory_002c-and-recursion"></a>
+<a name="index-_002d_002dno_002dprint_002ddirectory"></a>
+<a name="index-_002d_002dprint_002ddirectory_002c-disabling"></a>
+<a name="index-_002dw_002c-disabling"></a>
+<p>Normally, you do not need to specify this option because &lsquo;<samp>make</samp>&rsquo;
+does it for you: &lsquo;<samp>-w</samp>&rsquo; is turned on automatically when you use the
+&lsquo;<samp>-C</samp>&rsquo; option, and in sub-<code>make</code>s.  <code>make</code> will not
+automatically turn on &lsquo;<samp>-w</samp>&rsquo; if you also use &lsquo;<samp>-s</samp>&rsquo;, which says to
+be silent, or if you use &lsquo;<samp>--no-print-directory</samp>&rsquo; to explicitly
+disable it.
+</p>
+<hr size="6">
+<a name="Sequences"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#g_t_002dw-Option" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Empty-Commands" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Defining-Canned-Command-Sequences"></a>
+<h2 class="section">5.8 Defining Canned Command Sequences</h2>
+<a name="index-sequences-of-commands"></a>
+<a name="index-commands_002c-sequences-of"></a>
+
+<p>When the same sequence of commands is useful in making various targets, you
+can define it as a canned sequence with the <code>define</code> directive, and
+refer to the canned sequence from the rules for those targets.  The canned
+sequence is actually a variable, so the name must not conflict with other
+variable names.
+</p>
+<p>Here is an example of defining a canned sequence of commands:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">define run-yacc
+yacc $(firstword $^)
+mv y.tab.c $@
+endef
+</pre></td></tr></table>
+<a name="index-yacc"></a>
+
+<p>Here <code>run-yacc</code> is the name of the variable being defined;
+<code>endef</code> marks the end of the definition; the lines in between are the
+commands.  The <code>define</code> directive does not expand variable references
+and function calls in the canned sequence; the &lsquo;<samp>$</samp>&rsquo; characters,
+parentheses, variable names, and so on, all become part of the value of the
+variable you are defining.
+See section <a href="make_6.html#Defining">Defining Variables Verbatim</a>,
+for a complete explanation of <code>define</code>.
+</p>
+<p>The first command in this example runs Yacc on the first prerequisite of
+whichever rule uses the canned sequence.  The output file from Yacc is
+always named &lsquo;<tt>y.tab.c</tt>&rsquo;.  The second command moves the output to the
+rule&rsquo;s target file name.
+</p>
+<p>To use the canned sequence, substitute the variable into the commands of a
+rule.  You can substitute it like any other variable
+(see section <a href="make_6.html#Reference">Basics of Variable References</a>).
+Because variables defined by <code>define</code> are recursively expanded
+variables, all the variable references you wrote inside the <code>define</code>
+are expanded now.  For example:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">foo.c : foo.y
+        $(run-yacc)
+</pre></td></tr></table>
+
+<p>&lsquo;<samp>foo.y</samp>&rsquo; will be substituted for the variable &lsquo;<samp>$^</samp>&rsquo; when it occurs in
+<code>run-yacc</code>&rsquo;s value, and &lsquo;<samp>foo.c</samp>&rsquo; for &lsquo;<samp>$@</samp>&rsquo;.
+</p>
+<p>This is a realistic example, but this particular one is not needed in
+practice because <code>make</code> has an implicit rule to figure out these
+commands based on the file names involved
+(see section <a href="make_10.html#Implicit-Rules">Using Implicit Rules</a>).
+</p>
+<a name="index-_0040_002c-and-define"></a>
+<a name="index-_002d_002c-and-define"></a>
+<a name="index-_002b_002c-and-define"></a>
+<p>In command execution, each line of a canned sequence is treated just as
+if the line appeared on its own in the rule, preceded by a tab.  In
+particular, <code>make</code> invokes a separate subshell for each line.  You
+can use the special prefix characters that affect command lines
+(&lsquo;<samp>@</samp>&rsquo;, &lsquo;<samp>-</samp>&rsquo;, and &lsquo;<samp>+</samp>&rsquo;) on each line of a canned sequence.
+See section <a href="#Commands">Writing the Commands in Rules</a>.
+For example, using this canned sequence:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">define frobnicate
+@echo &quot;frobnicating target $@&quot;
+frob-step-1 $&lt; -o $@-step-1
+frob-step-2 $@-step-1 -o $@
+endef
+</pre></td></tr></table>
+
+<p><code>make</code> will not echo the first line, the <code>echo</code> command.
+But it <em>will</em> echo the following two command lines.
+</p>
+<p>On the other hand, prefix characters on the command line that refers to
+a canned sequence apply to every line in the sequence.  So the rule:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">frob.out: frob.in
+        @$(frobnicate)
+</pre></td></tr></table>
+
+<p>does not echo <em>any</em> commands.
+(See section <a href="#Echoing">Command Echoing</a>, for a full explanation of &lsquo;<samp>@</samp>&rsquo;.)
+</p>
+<hr size="6">
+<a name="Empty-Commands"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Sequences" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Using-Empty-Commands"></a>
+<h2 class="section">5.9 Using Empty Commands</h2>
+<a name="index-empty-commands"></a>
+<a name="index-commands_002c-empty"></a>
+
+<p>It is sometimes useful to define commands which do nothing.  This is done
+simply by giving a command that consists of nothing but whitespace.  For
+example:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">target: ;
+</pre></td></tr></table>
+
+<p>defines an empty command string for &lsquo;<tt>target</tt>&rsquo;.  You could also use a
+line beginning with a tab character to define an empty command string,
+but this would be confusing because such a line looks empty.
+</p>
+<a name="index-_002eDEFAULT_002c-and-empty-commands"></a>
+<p>You may be wondering why you would want to define a command string that
+does nothing.  The only reason this is useful is to prevent a target
+from getting implicit commands (from implicit rules or the
+<code>.DEFAULT</code> special target; see section <a href="make_10.html#Implicit-Rules">Using Implicit Rules</a> and
+see section <a href="make_10.html#Last-Resort">Defining Last-Resort Default Rules</a>).
+</p>
+
+<p>You may be inclined to define empty command strings for targets that are
+not actual files, but only exist so that their prerequisites can be
+remade.  However, this is not the best way to do that, because the
+prerequisites may not be remade properly if the target file actually does exist.
+See section <a href="make_4.html#Phony-Targets">Phony Targets</a>, for a better way to do this.
+</p>
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make_6.html#Using-Variables" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>October 20, 2021</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

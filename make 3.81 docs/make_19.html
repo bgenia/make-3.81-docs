@@ -1,0 +1,448 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This file documents the GNU make utility, which determines
+automatically which pieces of a large program need to be recompiled,
+and issues the commands to recompile them.
+
+This is Edition 0.70, last updated 1 April 2006,
+of The GNU Make Manual, for GNU make version 3.81.
+
+Copyright C 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
+1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2005, 2006
+Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the
+license is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and modify
+this GNU Manual, like GNU software.  Copies published by the Free
+Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on October 20, 2021 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU make: Index of Concepts</title>
+
+<meta name="description" content="GNU make: Index of Concepts">
+<meta name="keywords" content="GNU make: Index of Concepts">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Concept-Index"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make_18.html#ADDENDUM_003a-How-to-use-this-License-for-your-documents" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make_20.html#index_split-0" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make_18.html#GNU-Free-Documentation-License" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_26.html#Name-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Index-of-Concepts"></a>
+<h1 class="unnumbered">Index of Concepts</h1>
+
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#Index-of-Concepts_cp_symbol-1" class="summary-letter"><b>#</b></a>
+ &nbsp; 
+<a href="#Index-of-Concepts_cp_symbol-2" class="summary-letter"><b>$</b></a>
+ &nbsp; 
+<a href="#Index-of-Concepts_cp_symbol-3" class="summary-letter"><b>%</b></a>
+ &nbsp; 
+<a href="#Index-of-Concepts_cp_symbol-4" class="summary-letter"><b>*</b></a>
+ &nbsp; 
+<a href="#Index-of-Concepts_cp_symbol-5" class="summary-letter"><b>+</b></a>
+ &nbsp; 
+<a href="#Index-of-Concepts_cp_symbol-6" class="summary-letter"><b>,</b></a>
+ &nbsp; 
+<a href="#Index-of-Concepts_cp_symbol-7" class="summary-letter"><b>-</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-8" class="summary-letter"><b>.</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-9" class="summary-letter"><b>:</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-10" class="summary-letter"><b>=</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-11" class="summary-letter"><b>?</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-12" class="summary-letter"><b>@</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-13" class="summary-letter"><b>[</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-14" class="summary-letter"><b>\</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-15" class="summary-letter"><b>_</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-16" class="summary-letter"><b>~</b></a>
+ &nbsp; 
+<br>
+<a href="make_20.html#index_split-0_cp_letter-A" class="summary-letter"><b>A</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_letter-B" class="summary-letter"><b>B</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_letter-C" class="summary-letter"><b>C</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-E" class="summary-letter"><b>E</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-F" class="summary-letter"><b>F</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-G" class="summary-letter"><b>G</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-I" class="summary-letter"><b>I</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-J" class="summary-letter"><b>J</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-K" class="summary-letter"><b>K</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-M" class="summary-letter"><b>M</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-N" class="summary-letter"><b>N</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-O" class="summary-letter"><b>O</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-P" class="summary-letter"><b>P</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-Q" class="summary-letter"><b>Q</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-R" class="summary-letter"><b>R</b></a>
+ &nbsp; 
+<a href="make_24.html#index_split-4_cp_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="make_24.html#index_split-4_cp_letter-T" class="summary-letter"><b>T</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-V" class="summary-letter"><b>V</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-W" class="summary-letter"><b>W</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-Y" class="summary-letter"><b>Y</b></a>
+ &nbsp; 
+</td></tr></table>
+<table border="0" class="index-cp">
+<tr><td></td><th align="left">Index Entry</th><th align="left"> Section</th></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Concepts_cp_symbol-1">#</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_0023-_0028comments_0029_002c-in-commands"><code>#</code> (comments), in commands</a></td><td valign="top"><a href="make_5.html#Command-Syntax">5.1 Command Syntax</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_0023-_0028comments_0029_002c-in-makefile"><code>#</code> (comments), in makefile</a></td><td valign="top"><a href="make_3.html#Makefile-Contents">3.1 What Makefiles Contain</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_0023include"><code>#include</code></a></td><td valign="top"><a href="make_4.html#Automatic-Prerequisites">4.14 Generating Prerequisites Automatically</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Concepts_cp_symbol-2">$</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-_0024_002c-in-function-call"><code>$</code>, in function call</a></td><td valign="top"><a href="make_8.html#Syntax-of-Functions">8.1 Function Call Syntax</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_0024_002c-in-rules"><code>$</code>, in rules</a></td><td valign="top"><a href="make_4.html#Rule-Syntax">4.2 Rule Syntax</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-_0024_002c-in-variable-name"><code>$</code>, in variable name</a></td><td valign="top"><a href="make_6.html#Computed-Names">6.3.2 Computed Variable Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-_0024_002c-in-variable-reference"><code>$</code>, in variable reference</a></td><td valign="top"><a href="make_6.html#Reference">6.1 Basics of Variable References</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Concepts_cp_symbol-3">%</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0025_002c-in-pattern-rules"><code>%</code>, in pattern rules</a></td><td valign="top"><a href="make_10.html#Pattern-Intro">10.5.1 Introduction to Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-_0025_002c-quoting-in-patsubst"><code>%</code>, quoting in <code>patsubst</code></a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_0025_002c-quoting-in-static-pattern"><code>%</code>, quoting in static pattern</a></td><td valign="top"><a href="make_4.html#Static-Usage">4.12.1 Syntax of Static Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_0025_002c-quoting-in-vpath"><code>%</code>, quoting in <code>vpath</code></a></td><td valign="top"><a href="make_4.html#Selective-Search">4.5.2 The <code>vpath</code> Directive</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_0025_002c-quoting-with-_005c-_0028backslash_0029"><code>%</code>, quoting with <code>\</code> (backslash)</a></td><td valign="top"><a href="make_4.html#Selective-Search">4.5.2 The <code>vpath</code> Directive</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_0025_002c-quoting-with-_005c-_0028backslash_0029-1"><code>%</code>, quoting with <code>\</code> (backslash)</a></td><td valign="top"><a href="make_4.html#Static-Usage">4.12.1 Syntax of Static Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-_0025_002c-quoting-with-_005c-_0028backslash_0029-2"><code>%</code>, quoting with <code>\</code> (backslash)</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Concepts_cp_symbol-4">*</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002a-_0028wildcard-character_0029"><code>*</code> (wildcard character)</a></td><td valign="top"><a href="make_4.html#Wildcards">4.4 Using Wildcard Characters in File Names</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Concepts_cp_symbol-5">+</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002b_002c-and-command-execution">+, and command execution</a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002b_002c-and-commands">+, and commands</a></td><td valign="top"><a href="make_5.html#MAKE-Variable">5.7.1 How the <code>MAKE</code> Variable Works</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002b_002c-and-define">+, and <code>define</code></a></td><td valign="top"><a href="make_5.html#Sequences">5.8 Defining Canned Command Sequences</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-_002b_003d">+=</a></td><td valign="top"><a href="make_6.html#Appending">6.6 Appending More Text to Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002b_003d_002c-expansion">+=, expansion</a></td><td valign="top"><a href="make_3.html#Variable-Assignment">Variable Assignment</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002b_003d_002c-expansion-1">+=, expansion</a></td><td valign="top"><a href="make_3.html#Variable-Assignment">Variable Assignment</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Concepts_cp_symbol-6">,</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_002cv-_0028RCS-file-extension_0029"><code>,v <span class="roman">(RCS file extension)</span></code></a></td><td valign="top"><a href="make_10.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Concepts_cp_symbol-7">-</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d-_0028in-commands_0029"><code>-</code> (in commands)</a></td><td valign="top"><a href="make_5.html#Errors">5.5 Errors in Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002c-and-define">-, and <code>define</code></a></td><td valign="top"><a href="make_5.html#Sequences">5.8 Defining Canned Command Sequences</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dalways_002dmake"><code>--always-make</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dassume_002dnew"><code>--assume-new</code></a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dassume_002dnew-1"><code>--assume-new</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dassume_002dnew_002c-and-recursion"><code>--assume-new</code>, and recursion</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dassume_002dold"><code>--assume-old</code></a></td><td valign="top"><a href="make_9.html#Avoiding-Compilation">9.4 Avoiding Recompilation of Some Files</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dassume_002dold-1"><code>--assume-old</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dassume_002dold_002c-and-recursion"><code>--assume-old</code>, and recursion</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dcheck_002dsymlink_002dtimes"><code>--check-symlink-times</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002ddebug"><code>--debug</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002ddirectory"><code>--directory</code></a></td><td valign="top"><a href="make_5.html#Recursion">5.7 Recursive Use of <code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002ddirectory-1"><code>--directory</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002ddirectory_002c-and-_002d_002dprint_002ddirectory"><code>--directory</code>, and <code>--print-directory</code></a></td><td valign="top"><a href="make_5.html#g_t_002dw-Option">5.7.4 The &lsquo;<samp>--print-directory</samp>&rsquo; Option</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002ddirectory_002c-and-recursion"><code>--directory</code>, and recursion</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002ddry_002drun"><code>--dry-run</code></a></td><td valign="top"><a href="make_5.html#Echoing">5.2 Command Echoing</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002ddry_002drun-1"><code>--dry-run</code></a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002ddry_002drun-2"><code>--dry-run</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002denvironment_002doverrides"><code>--environment-overrides</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002d_002dfile"><code>--file</code></a></td><td valign="top"><a href="make_3.html#Makefile-Names">3.2 What Name to Give Your Makefile</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dfile-1"><code>--file</code></a></td><td valign="top"><a href="make_9.html#Makefile-Arguments">9.1 Arguments to Specify the Makefile</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dfile-2"><code>--file</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dfile_002c-and-recursion"><code>--file</code>, and recursion</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dhelp"><code>--help</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dignore_002derrors"><code>--ignore-errors</code></a></td><td valign="top"><a href="make_5.html#Errors">5.5 Errors in Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dignore_002derrors-1"><code>--ignore-errors</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002d_002dinclude_002ddir"><code>--include-dir</code></a></td><td valign="top"><a href="make_3.html#Include">3.3 Including Other Makefiles</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dinclude_002ddir-1"><code>--include-dir</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002djobs"><code>--jobs</code></a></td><td valign="top"><a href="make_5.html#Parallel">5.4 Parallel Execution</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002djobs-1"><code>--jobs</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002djobs_002c-and-recursion"><code>--jobs</code>, and recursion</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002djust_002dprint"><code>--just-print</code></a></td><td valign="top"><a href="make_5.html#Echoing">5.2 Command Echoing</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002djust_002dprint-1"><code>--just-print</code></a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002djust_002dprint-2"><code>--just-print</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dkeep_002dgoing"><code>--keep-going</code></a></td><td valign="top"><a href="make_5.html#Errors">5.5 Errors in Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dkeep_002dgoing-1"><code>--keep-going</code></a></td><td valign="top"><a href="make_9.html#Testing">9.6 Testing the Compilation of a Program</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dkeep_002dgoing-2"><code>--keep-going</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dload_002daverage"><code>--load-average</code></a></td><td valign="top"><a href="make_5.html#Parallel">5.4 Parallel Execution</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dload_002daverage-1"><code>--load-average</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002d_002dmakefile"><code>--makefile</code></a></td><td valign="top"><a href="make_3.html#Makefile-Names">3.2 What Name to Give Your Makefile</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dmakefile-1"><code>--makefile</code></a></td><td valign="top"><a href="make_9.html#Makefile-Arguments">9.1 Arguments to Specify the Makefile</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dmakefile-2"><code>--makefile</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dmax_002dload"><code>--max-load</code></a></td><td valign="top"><a href="make_5.html#Parallel">5.4 Parallel Execution</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dmax_002dload-1"><code>--max-load</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dnew_002dfile"><code>--new-file</code></a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dnew_002dfile-1"><code>--new-file</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dnew_002dfile_002c-and-recursion"><code>--new-file</code>, and recursion</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dno_002dbuiltin_002drules"><code>--no-builtin-rules</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dno_002dbuiltin_002dvariables"><code>--no-builtin-variables</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dno_002dkeep_002dgoing"><code>--no-keep-going</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dno_002dprint_002ddirectory"><code>--no-print-directory</code></a></td><td valign="top"><a href="make_5.html#g_t_002dw-Option">5.7.4 The &lsquo;<samp>--print-directory</samp>&rsquo; Option</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dno_002dprint_002ddirectory-1"><code>--no-print-directory</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dold_002dfile"><code>--old-file</code></a></td><td valign="top"><a href="make_9.html#Avoiding-Compilation">9.4 Avoiding Recompilation of Some Files</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dold_002dfile-1"><code>--old-file</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dold_002dfile_002c-and-recursion"><code>--old-file</code>, and recursion</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dprint_002ddata_002dbase"><code>--print-data-base</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dprint_002ddirectory"><code>--print-directory</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dprint_002ddirectory_002c-and-_002d_002ddirectory"><code>--print-directory</code>, and <code>--directory</code></a></td><td valign="top"><a href="make_5.html#g_t_002dw-Option">5.7.4 The &lsquo;<samp>--print-directory</samp>&rsquo; Option</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dprint_002ddirectory_002c-and-recursion"><code>--print-directory</code>, and recursion</a></td><td valign="top"><a href="make_5.html#g_t_002dw-Option">5.7.4 The &lsquo;<samp>--print-directory</samp>&rsquo; Option</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dprint_002ddirectory_002c-disabling"><code>--print-directory</code>, disabling</a></td><td valign="top"><a href="make_5.html#g_t_002dw-Option">5.7.4 The &lsquo;<samp>--print-directory</samp>&rsquo; Option</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dquestion"><code>--question</code></a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dquestion-1"><code>--question</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dquiet"><code>--quiet</code></a></td><td valign="top"><a href="make_5.html#Echoing">5.2 Command Echoing</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dquiet-1"><code>--quiet</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002drecon"><code>--recon</code></a></td><td valign="top"><a href="make_5.html#Echoing">5.2 Command Echoing</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002drecon-1"><code>--recon</code></a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002drecon-2"><code>--recon</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dsilent"><code>--silent</code></a></td><td valign="top"><a href="make_5.html#Echoing">5.2 Command Echoing</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dsilent-1"><code>--silent</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dstop"><code>--stop</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dtouch"><code>--touch</code></a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dtouch-1"><code>--touch</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002d_002dtouch_002c-and-recursion"><code>--touch</code>, and recursion</a></td><td valign="top"><a href="make_5.html#MAKE-Variable">5.7.1 How the <code>MAKE</code> Variable Works</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dversion"><code>--version</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dwarn_002dundefined_002dvariables"><code>--warn-undefined-variables</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dwhat_002dif"><code>--what-if</code></a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002d_002dwhat_002dif-1"><code>--what-if</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002db"><code>-b</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dB"><code>-B</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002dC"><code>-C</code></a></td><td valign="top"><a href="make_5.html#Recursion">5.7 Recursive Use of <code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dC-1"><code>-C</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002dC_002c-and-_002dw"><code>-C</code>, and <code>-w</code></a></td><td valign="top"><a href="make_5.html#g_t_002dw-Option">5.7.4 The &lsquo;<samp>--print-directory</samp>&rsquo; Option</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002dC_002c-and-recursion"><code>-C</code>, and recursion</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dd"><code>-d</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002de"><code>-e</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002de-_0028shell-flag_0029"><code>-e</code> (shell flag)</a></td><td valign="top"><a href="make_4.html#Automatic-Prerequisites">4.14 Generating Prerequisites Automatically</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002df"><code>-f</code></a></td><td valign="top"><a href="make_3.html#Makefile-Names">3.2 What Name to Give Your Makefile</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002df-1"><code>-f</code></a></td><td valign="top"><a href="make_9.html#Makefile-Arguments">9.1 Arguments to Specify the Makefile</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002df-2"><code>-f</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002df_002c-and-recursion"><code>-f</code>, and recursion</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dh"><code>-h</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002dI"><code>-I</code></a></td><td valign="top"><a href="make_3.html#Include">3.3 Including Other Makefiles</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002di"><code>-i</code></a></td><td valign="top"><a href="make_5.html#Errors">5.5 Errors in Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002di-1"><code>-i</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dI-1"><code>-I</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002dj"><code>-j</code></a></td><td valign="top"><a href="make_5.html#Parallel">5.4 Parallel Execution</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dj-1"><code>-j</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_11.html#index-_002dj_002c-and-archive-update"><code>-j</code>, and archive update</a></td><td valign="top"><a href="make_11.html#Archive-Pitfalls">11.3 Dangers When Using Archives</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002dj_002c-and-recursion"><code>-j</code>, and recursion</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002dk"><code>-k</code></a></td><td valign="top"><a href="make_5.html#Errors">5.5 Errors in Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dk-1"><code>-k</code></a></td><td valign="top"><a href="make_9.html#Testing">9.6 Testing the Compilation of a Program</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dk-2"><code>-k</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dL"><code>-L</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dl"><code>-l</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002dl-_0028library-search_0029"><code>-l</code> (library search)</a></td><td valign="top"><a href="make_4.html#Libraries_002fSearch">4.5.6 Directory Search for Link Libraries</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002dl-_0028load-average_0029"><code>-l</code> (load average)</a></td><td valign="top"><a href="make_5.html#Parallel">5.4 Parallel Execution</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dm"><code>-m</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002dM-_0028to-compiler_0029"><code>-M</code> (to compiler)</a></td><td valign="top"><a href="make_4.html#Automatic-Prerequisites">4.14 Generating Prerequisites Automatically</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002dMM-_0028to-GNU-compiler_0029"><code>-MM</code> (to GNU compiler)</a></td><td valign="top"><a href="make_4.html#Automatic-Prerequisites">4.14 Generating Prerequisites Automatically</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002dn"><code>-n</code></a></td><td valign="top"><a href="make_5.html#Echoing">5.2 Command Echoing</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dn-1"><code>-n</code></a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dn-2"><code>-n</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002do"><code>-o</code></a></td><td valign="top"><a href="make_9.html#Avoiding-Compilation">9.4 Avoiding Recompilation of Some Files</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002do-1"><code>-o</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002do_002c-and-recursion"><code>-o</code>, and recursion</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dp"><code>-p</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dq"><code>-q</code></a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dq-1"><code>-q</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dr"><code>-r</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dR"><code>-R</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dS"><code>-S</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002ds"><code>-s</code></a></td><td valign="top"><a href="make_5.html#Echoing">5.2 Command Echoing</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002ds-1"><code>-s</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dt"><code>-t</code></a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dt-1"><code>-t</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002dt_002c-and-recursion"><code>-t</code>, and recursion</a></td><td valign="top"><a href="make_5.html#MAKE-Variable">5.7.1 How the <code>MAKE</code> Variable Works</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dv"><code>-v</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dW"><code>-W</code></a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dw"><code>-w</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-_002dW-1"><code>-W</code></a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002dw_002c-and-_002dC"><code>-w</code>, and <code>-C</code></a></td><td valign="top"><a href="make_5.html#g_t_002dw-Option">5.7.4 The &lsquo;<samp>--print-directory</samp>&rsquo; Option</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002dw_002c-and-recursion"><code>-w</code>, and recursion</a></td><td valign="top"><a href="make_5.html#g_t_002dw-Option">5.7.4 The &lsquo;<samp>--print-directory</samp>&rsquo; Option</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002dW_002c-and-recursion"><code>-W</code>, and recursion</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002dw_002c-disabling"><code>-w</code>, disabling</a></td><td valign="top"><a href="make_5.html#g_t_002dw-Option">5.7.4 The &lsquo;<samp>--print-directory</samp>&rsquo; Option</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#Index-of-Concepts_cp_symbol-1" class="summary-letter"><b>#</b></a>
+ &nbsp; 
+<a href="#Index-of-Concepts_cp_symbol-2" class="summary-letter"><b>$</b></a>
+ &nbsp; 
+<a href="#Index-of-Concepts_cp_symbol-3" class="summary-letter"><b>%</b></a>
+ &nbsp; 
+<a href="#Index-of-Concepts_cp_symbol-4" class="summary-letter"><b>*</b></a>
+ &nbsp; 
+<a href="#Index-of-Concepts_cp_symbol-5" class="summary-letter"><b>+</b></a>
+ &nbsp; 
+<a href="#Index-of-Concepts_cp_symbol-6" class="summary-letter"><b>,</b></a>
+ &nbsp; 
+<a href="#Index-of-Concepts_cp_symbol-7" class="summary-letter"><b>-</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-8" class="summary-letter"><b>.</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-9" class="summary-letter"><b>:</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-10" class="summary-letter"><b>=</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-11" class="summary-letter"><b>?</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-12" class="summary-letter"><b>@</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-13" class="summary-letter"><b>[</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-14" class="summary-letter"><b>\</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-15" class="summary-letter"><b>_</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-16" class="summary-letter"><b>~</b></a>
+ &nbsp; 
+<br>
+<a href="make_20.html#index_split-0_cp_letter-A" class="summary-letter"><b>A</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_letter-B" class="summary-letter"><b>B</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_letter-C" class="summary-letter"><b>C</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-E" class="summary-letter"><b>E</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-F" class="summary-letter"><b>F</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-G" class="summary-letter"><b>G</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-I" class="summary-letter"><b>I</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-J" class="summary-letter"><b>J</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-K" class="summary-letter"><b>K</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-M" class="summary-letter"><b>M</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-N" class="summary-letter"><b>N</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-O" class="summary-letter"><b>O</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-P" class="summary-letter"><b>P</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-Q" class="summary-letter"><b>Q</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-R" class="summary-letter"><b>R</b></a>
+ &nbsp; 
+<a href="make_24.html#index_split-4_cp_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="make_24.html#index_split-4_cp_letter-T" class="summary-letter"><b>T</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-V" class="summary-letter"><b>V</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-W" class="summary-letter"><b>W</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-Y" class="summary-letter"><b>Y</b></a>
+ &nbsp; 
+</td></tr></table>
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make_18.html#GNU-Free-Documentation-License" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make_26.html#Name-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>October 20, 2021</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This file documents the GNU make utility, which determines
+automatically which pieces of a large program need to be recompiled,
+and issues the commands to recompile them.
+
+This is Edition 0.70, last updated 1 April 2006,
+of The GNU Make Manual, for GNU make version 3.81.
+
+Copyright C 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
+1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2005, 2006
+Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the
+license is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and modify
+this GNU Manual, like GNU software.  Copies published by the Free
+Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on October 20, 2021 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU make: 13. Incompatibilities and Missing Features</title>
+
+<meta name="description" content="GNU make: 13. Incompatibilities and Missing Features">
+<meta name="keywords" content="GNU make: 13. Incompatibilities and Missing Features">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Missing"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make_12.html#Features" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make_14.html#Makefile-Conventions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make_12.html#Features" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_14.html#Makefile-Conventions" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Incompatibilities-and-Missing-Features"></a>
+<h1 class="chapter">13. Incompatibilities and Missing Features</h1>
+<a name="index-incompatibilities"></a>
+<a name="index-missing-features"></a>
+<a name="index-features_002c-missing"></a>
+
+<p>The <code>make</code> programs in various other systems support a few features
+that are not implemented in GNU <code>make</code>.  The POSIX.2 standard
+(<cite>IEEE Standard 1003.2-1992</cite>) which specifies <code>make</code> does not
+require any of these features.
+</p>
+<ul>
+<li>
+A target of the form &lsquo;<samp><var>file</var>((<var>entry</var>))</samp>&rsquo; stands for a member
+of archive file <var>file</var>.  The member is chosen, not by name, but by
+being an object file which defines the linker symbol <var>entry</var>.
+
+<p>This feature was not put into GNU <code>make</code> because of the
+nonmodularity of putting knowledge into <code>make</code> of the internal
+format of archive file symbol tables.
+See section <a href="make_11.html#Archive-Symbols">Updating Archive Symbol Directories</a>.
+</p>
+</li><li>
+Suffixes (used in suffix rules) that end with the character &lsquo;<samp>~</samp>&rsquo;
+have a special meaning to System V <code>make</code>;
+they refer to the SCCS file that corresponds
+to the file one would get without the &lsquo;<samp>~</samp>&rsquo;.  For example, the
+suffix rule &lsquo;<samp>.c~.o</samp>&rsquo; would make the file &lsquo;<tt><var>n</var>.o</tt>&rsquo; from
+the SCCS file &lsquo;<tt>s.<var>n</var>.c</tt>&rsquo;.  For complete coverage, a whole
+series of such suffix rules is required.
+See section <a href="make_10.html#Suffix-Rules">Old-Fashioned Suffix Rules</a>.
+
+<p>In GNU <code>make</code>, this entire series of cases is handled by two
+pattern rules for extraction from SCCS, in combination with the
+general feature of rule chaining.
+See section <a href="make_10.html#Chained-Rules">Chains of Implicit Rules</a>.
+</p>
+</li><li>
+In System V and 4.3 BSD <code>make</code>, files found by <code>VPATH</code> search
+(see section <a href="make_4.html#Directory-Search">Searching Directories for Prerequisites</a>) have their names changed inside command
+strings.  We feel it is much cleaner to always use automatic variables
+and thus make this feature obsolete.
+
+</li><li>
+In some Unix <code>make</code>s, the automatic variable <code>$*</code> appearing in
+the prerequisites of a rule has the amazingly strange &ldquo;feature&rdquo; of
+expanding to the full name of the <em>target of that rule</em>.  We cannot
+imagine what went on in the minds of Unix <code>make</code> developers to do
+this; it is utterly inconsistent with the normal definition of <code>$*</code>.
+<a name="index-_002a-_0028automatic-variable_0029_002c-unsupported-bizarre-usage"></a>
+
+</li><li>
+In some Unix <code>make</code>s, implicit rule search
+(see section <a href="make_10.html#Implicit-Rules">Using Implicit Rules</a>) is apparently done for
+<em>all</em> targets, not just those without commands.  This means you can
+do:
+
+<table><tr><td>&nbsp;</td><td><pre class="example">foo.o:
+        cc -c foo.c
+</pre></td></tr></table>
+
+<p>and Unix <code>make</code> will intuit that &lsquo;<tt>foo.o</tt>&rsquo; depends on
+&lsquo;<tt>foo.c</tt>&rsquo;.
+</p>
+<p>We feel that such usage is broken.  The prerequisite properties of
+<code>make</code> are well-defined (for GNU <code>make</code>, at least),
+and doing such a thing simply does not fit the model.
+</p>
+</li><li>
+GNU <code>make</code> does not include any built-in implicit rules for
+compiling or preprocessing EFL programs.  If we hear of anyone who is
+using EFL, we will gladly add them.
+
+</li><li>
+It appears that in SVR4 <code>make</code>, a suffix rule can be specified with
+no commands, and it is treated as if it had empty commands
+(see section <a href="make_5.html#Empty-Commands">Using Empty Commands</a>).  For example:
+
+<table><tr><td>&nbsp;</td><td><pre class="example">.c.a:
+</pre></td></tr></table>
+
+<p>will override the built-in &lsquo;<tt>.c.a</tt>&rsquo; suffix rule.
+</p>
+<p>We feel that it is cleaner for a rule without commands to always simply
+add to the prerequisite list for the target.  The above example can be
+easily rewritten to get the desired behavior in GNU <code>make</code>:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">.c.a: ;
+</pre></td></tr></table>
+
+</li><li>
+Some versions of <code>make</code> invoke the shell with the &lsquo;<samp>-e</samp>&rsquo; flag,
+except under &lsquo;<samp>-k</samp>&rsquo; (see section <a href="make_9.html#Testing">Testing the Compilation of a Program</a>).  The &lsquo;<samp>-e</samp>&rsquo; flag tells the shell to exit as soon as any
+program it runs returns a nonzero status.  We feel it is cleaner to
+write each shell command line to stand on its own and not require this
+special treatment.
+</li></ul>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make_12.html#Features" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make_14.html#Makefile-Conventions" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>October 20, 2021</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

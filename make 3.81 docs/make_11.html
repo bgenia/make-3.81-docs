@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This file documents the GNU make utility, which determines
+automatically which pieces of a large program need to be recompiled,
+and issues the commands to recompile them.
+
+This is Edition 0.70, last updated 1 April 2006,
+of The GNU Make Manual, for GNU make version 3.81.
+
+Copyright C 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
+1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2005, 2006
+Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the
+license is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and modify
+this GNU Manual, like GNU software.  Copies published by the Free
+Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on October 20, 2021 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU make: 11. Using make to Update Archive Files</title>
+
+<meta name="description" content="GNU make: 11. Using make to Update Archive Files">
+<meta name="keywords" content="GNU make: 11. Using make to Update Archive Files">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Archives"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make_10.html#Implicit-Rule-Search" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Archive-Members" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make_10.html#Implicit-Rules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_12.html#Features" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Using-make-to-Update-Archive-Files"></a>
+<h1 class="chapter">11. Using <code>make</code> to Update Archive Files</h1>
+<a name="index-archive"></a>
+
+<p><em>Archive files</em> are files containing named subfiles called
+<em>members</em>; they are maintained with the program <code>ar</code> and their
+main use is as subroutine libraries for linking.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Archive-Members">11.1 Archive Members as Targets</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">             Archive members as targets.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Archive-Update">11.2 Implicit Rule for Archive Member Targets</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">              The implicit rule for archive member targets.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Archive-Pitfalls">11.3 Dangers When Using Archives</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">            Dangers to watch out for when using archives.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Archive-Suffix-Rules">11.4 Suffix Rules for Archive Files</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        You can write a special kind of suffix rule
+                                  for updating archives.
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Archive-Members"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Archives" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Archive-Update" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Archives" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Archives" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_12.html#Features" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Archive-Members-as-Targets"></a>
+<h2 class="section">11.1 Archive Members as Targets</h2>
+<a name="index-archive-member-targets"></a>
+
+<p>An individual member of an archive file can be used as a target or
+prerequisite in <code>make</code>.  You specify the member named <var>member</var> in
+archive file <var>archive</var> as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example"><var>archive</var>(<var>member</var>)
+</pre></td></tr></table>
+
+<p>This construct is available only in targets and prerequisites, not in
+commands!  Most programs that you might use in commands do not support this
+syntax and cannot act directly on archive members.  Only <code>ar</code> and
+other programs specifically designed to operate on archives can do so.
+Therefore, valid commands to update an archive member target probably must
+use <code>ar</code>.  For example, this rule says to create a member
+&lsquo;<tt>hack.o</tt>&rsquo; in archive &lsquo;<tt>foolib</tt>&rsquo; by copying the file &lsquo;<tt>hack.o</tt>&rsquo;:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">foolib(hack.o) : hack.o
+        ar cr foolib hack.o
+</pre></td></tr></table>
+
+<p>In fact, nearly all archive member targets are updated in just this way
+and there is an implicit rule to do it for you.  <strong>Please note:</strong> The
+&lsquo;<samp>c</samp>&rsquo; flag to <code>ar</code> is required if the archive file does not
+already exist.
+</p>
+<p>To specify several members in the same archive, you can write all the
+member names together between the parentheses.  For example:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">foolib(hack.o kludge.o)
+</pre></td></tr></table>
+
+<p>is equivalent to:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">foolib(hack.o) foolib(kludge.o)
+</pre></td></tr></table>
+
+<a name="index-wildcard_002c-in-archive-member"></a>
+<p>You can also use shell-style wildcards in an archive member reference.
+See section <a href="make_4.html#Wildcards">Using Wildcard Characters in File Names</a>.  For
+example, &lsquo;<samp>foolib(*.o)</samp>&rsquo; expands to all existing members of the
+&lsquo;<tt>foolib</tt>&rsquo; archive whose names end in &lsquo;<samp>.o</samp>&rsquo;; perhaps
+&lsquo;<samp>foolib(hack.o) foolib(kludge.o)</samp>&rsquo;.
+</p>
+<hr size="6">
+<a name="Archive-Update"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Archive-Members" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Archive-Symbols" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Archives" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Archives" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_12.html#Features" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Implicit-Rule-for-Archive-Member-Targets"></a>
+<h2 class="section">11.2 Implicit Rule for Archive Member Targets</h2>
+
+<p>Recall that a target that looks like &lsquo;<tt><var>a</var>(<var>m</var>)</tt>&rsquo; stands for the
+member named <var>m</var> in the archive file <var>a</var>.
+</p>
+<p>When <code>make</code> looks for an implicit rule for such a target, as a special
+feature it considers implicit rules that match &lsquo;<tt>(<var>m</var>)</tt>&rsquo;, as well as
+those that match the actual target &lsquo;<tt><var>a</var>(<var>m</var>)</tt>&rsquo;.
+</p>
+<p>This causes one special rule whose target is &lsquo;<tt>(%)</tt>&rsquo; to match.  This
+rule updates the target &lsquo;<tt><var>a</var>(<var>m</var>)</tt>&rsquo; by copying the file <var>m</var>
+into the archive.  For example, it will update the archive member target
+&lsquo;<tt>foo.a(bar.o)</tt>&rsquo; by copying the <em>file</em> &lsquo;<tt>bar.o</tt>&rsquo; into the
+archive &lsquo;<tt>foo.a</tt>&rsquo; as a <em>member</em> named &lsquo;<tt>bar.o</tt>&rsquo;.
+</p>
+<p>When this rule is chained with others, the result is very powerful.
+Thus, &lsquo;<samp>make &quot;foo.a(bar.o)&quot;</samp>&rsquo; (the quotes are needed to protect the
+&lsquo;<samp>(</samp>&rsquo; and &lsquo;<samp>)</samp>&rsquo; from being interpreted specially by the shell) in
+the presence of a file &lsquo;<tt>bar.c</tt>&rsquo; is enough to cause the following
+commands to be run, even without a makefile:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">cc -c bar.c -o bar.o
+ar r foo.a bar.o
+rm -f bar.o
+</pre></td></tr></table>
+
+<p>Here <code>make</code> has envisioned the file &lsquo;<tt>bar.o</tt>&rsquo; as an intermediate
+file.  See section <a href="make_10.html#Chained-Rules">Chains of Implicit Rules</a>.
+</p>
+<p>Implicit rules such as this one are written using the automatic variable
+&lsquo;<samp>$%</samp>&rsquo;.  See section <a href="make_10.html#Automatic-Variables">Automatic Variables</a>.
+</p>
+<p>An archive member name in an archive cannot contain a directory name, but
+it may be useful in a makefile to pretend that it does.  If you write an
+archive member target &lsquo;<tt>foo.a(dir/file.o)</tt>&rsquo;, <code>make</code> will perform
+automatic updating with this command:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">ar r foo.a dir/file.o
+</pre></td></tr></table>
+
+<p>which has the effect of copying the file &lsquo;<tt>dir/file.o</tt>&rsquo; into a member
+named &lsquo;<tt>file.o</tt>&rsquo;.  In connection with such usage, the automatic variables
+<code>%D</code> and <code>%F</code> may be useful.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Archive-Symbols">11.2.1 Updating Archive Symbol Directories</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">             How to update archive symbol directories.
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Archive-Symbols"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Archive-Update" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Archive-Pitfalls" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Archives" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Archive-Update" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_12.html#Features" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Updating-Archive-Symbol-Directories"></a>
+<h3 class="subsection">11.2.1 Updating Archive Symbol Directories</h3>
+<a name="index-_005f_005f_002eSYMDEF"></a>
+<a name="index-updating-archive-symbol-directories"></a>
+<a name="index-archive-symbol-directory-updating"></a>
+<a name="index-symbol-directories_002c-updating-archive"></a>
+<a name="index-directories_002c-updating-archive-symbol"></a>
+
+<p>An archive file that is used as a library usually contains a special member
+named &lsquo;<tt>__.SYMDEF</tt>&rsquo; that contains a directory of the external symbol
+names defined by all the other members.  After you update any other
+members, you need to update &lsquo;<tt>__.SYMDEF</tt>&rsquo; so that it will summarize the
+other members properly.  This is done by running the <code>ranlib</code> program:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">ranlib <var>archivefile</var>
+</pre></td></tr></table>
+
+<p>Normally you would put this command in the rule for the archive file,
+and make all the members of the archive file prerequisites of that rule.
+For example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">libfoo.a: libfoo.a(x.o) libfoo.a(y.o) &hellip;
+        ranlib libfoo.a
+</pre></td></tr></table>
+
+<p>The effect of this is to update archive members &lsquo;<tt>x.o</tt>&rsquo;, &lsquo;<tt>y.o</tt>&rsquo;,
+etc., and then update the symbol directory member &lsquo;<tt>__.SYMDEF</tt>&rsquo; by
+running <code>ranlib</code>.  The rules for updating the members are not shown
+here; most likely you can omit them and use the implicit rule which copies
+files into the archive, as described in the preceding section.
+</p>
+<p>This is not necessary when using the GNU <code>ar</code> program, which
+updates the &lsquo;<tt>__.SYMDEF</tt>&rsquo; member automatically.
+</p>
+<hr size="6">
+<a name="Archive-Pitfalls"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Archive-Symbols" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Archive-Suffix-Rules" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Archives" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Archives" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_12.html#Features" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Dangers-When-Using-Archives"></a>
+<h2 class="section">11.3 Dangers When Using Archives</h2>
+<a name="index-archive_002c-and-parallel-execution"></a>
+<a name="index-parallel-execution_002c-and-archive-update"></a>
+<a name="index-archive_002c-and-_002dj"></a>
+<a name="index-_002dj_002c-and-archive-update"></a>
+
+<p>It is important to be careful when using parallel execution (the
+<code>-j</code> switch; see section <a href="make_5.html#Parallel">Parallel Execution</a>) and archives.
+If multiple <code>ar</code> commands run at the same time on the same archive
+file, they will not know about each other and can corrupt the file.
+</p>
+<p>Possibly a future version of <code>make</code> will provide a mechanism to
+circumvent this problem by serializing all commands that operate on the
+same archive file.  But for the time being, you must either write your
+makefiles to avoid this problem in some other way, or not use <code>-j</code>.
+</p>
+<hr size="6">
+<a name="Archive-Suffix-Rules"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Archive-Pitfalls" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make_12.html#Features" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Archives" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Archives" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_12.html#Features" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Suffix-Rules-for-Archive-Files"></a>
+<h2 class="section">11.4 Suffix Rules for Archive Files</h2>
+<a name="index-suffix-rule_002c-for-archive"></a>
+<a name="index-archive_002c-suffix-rule-for"></a>
+<a name="index-library-archive_002c-suffix-rule-for"></a>
+<a name="index-_002ea-_0028archives_0029"></a>
+
+<p>You can write a special kind of suffix rule for dealing with archive
+files.  See section <a href="make_10.html#Suffix-Rules">Old-Fashioned Suffix Rules</a>, for a full explanation of suffix rules.
+Archive suffix rules are obsolete in GNU <code>make</code>, because pattern
+rules for archives are a more general mechanism (see section <a href="#Archive-Update">Implicit Rule for Archive Member Targets</a>).  But they are retained for compatibility with other
+<code>make</code>s.
+</p>
+<p>To write a suffix rule for archives, you simply write a suffix rule
+using the target suffix &lsquo;<samp>.a</samp>&rsquo; (the usual suffix for archive files).
+For example, here is the old-fashioned suffix rule to update a library
+archive from C source files:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">.c.a:
+        $(CC) $(CFLAGS) $(CPPFLAGS) -c $&lt; -o $*.o
+        $(AR) r $@ $*.o
+        $(RM) $*.o
+</pre></td></tr></table>
+
+<p>This works just as if you had written the pattern rule:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(%.o): %.c
+        $(CC) $(CFLAGS) $(CPPFLAGS) -c $&lt; -o $*.o
+        $(AR) r $@ $*.o
+        $(RM) $*.o
+</pre></td></tr></table>
+
+<p>In fact, this is just what <code>make</code> does when it sees a suffix rule
+with &lsquo;<samp>.a</samp>&rsquo; as the target suffix.  Any double-suffix rule
+&lsquo;<samp>.<var>x</var>.a</samp>&rsquo; is converted to a pattern rule with the target
+pattern &lsquo;<samp>(%.o)</samp>&rsquo; and a prerequisite pattern of &lsquo;<samp>%.<var>x</var></samp>&rsquo;.
+</p>
+<p>Since you might want to use &lsquo;<samp>.a</samp>&rsquo; as the suffix for some other kind
+of file, <code>make</code> also converts archive suffix rules to pattern rules
+in the normal way (see section <a href="make_10.html#Suffix-Rules">Old-Fashioned Suffix Rules</a>).  Thus a double-suffix rule
+&lsquo;<samp>.<var>x</var>.a</samp>&rsquo; produces two pattern rules: &lsquo;<samp>(%.o):
+%.<var>x</var></samp>&rsquo; and &lsquo;<samp>%.a: %.<var>x</var></samp>&rsquo;.
+</p>
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Archives" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make_12.html#Features" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>October 20, 2021</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

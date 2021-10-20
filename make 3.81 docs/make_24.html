@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This file documents the GNU make utility, which determines
+automatically which pieces of a large program need to be recompiled,
+and issues the commands to recompile them.
+
+This is Edition 0.70, last updated 1 April 2006,
+of The GNU Make Manual, for GNU make version 3.81.
+
+Copyright C 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
+1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2005, 2006
+Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the
+license is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and modify
+this GNU Manual, like GNU software.  Copies published by the Free
+Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on October 20, 2021 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU make: Index of Concepts: S &ndash; T</title>
+
+<meta name="description" content="GNU make: Index of Concepts: S &ndash; T">
+<meta name="keywords" content="GNU make: Index of Concepts: S &ndash; T">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="index_split-4"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make_23.html#index_split-3" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make_25.html#index_split-5" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make_18.html#GNU-Free-Documentation-License" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_26.html#Name-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="unnumbered">Index of Concepts: S &ndash; T</h1>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="make_19.html#Index-of-Concepts_cp_symbol-1" class="summary-letter"><b>#</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-2" class="summary-letter"><b>$</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-3" class="summary-letter"><b>%</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-4" class="summary-letter"><b>*</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-5" class="summary-letter"><b>+</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-6" class="summary-letter"><b>,</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-7" class="summary-letter"><b>-</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-8" class="summary-letter"><b>.</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-9" class="summary-letter"><b>:</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-10" class="summary-letter"><b>=</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-11" class="summary-letter"><b>?</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-12" class="summary-letter"><b>@</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-13" class="summary-letter"><b>[</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-14" class="summary-letter"><b>\</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-15" class="summary-letter"><b>_</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-16" class="summary-letter"><b>~</b></a>
+ &nbsp; 
+<br>
+<a href="make_20.html#index_split-0_cp_letter-A" class="summary-letter"><b>A</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_letter-B" class="summary-letter"><b>B</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_letter-C" class="summary-letter"><b>C</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-E" class="summary-letter"><b>E</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-F" class="summary-letter"><b>F</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-G" class="summary-letter"><b>G</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-I" class="summary-letter"><b>I</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-J" class="summary-letter"><b>J</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-K" class="summary-letter"><b>K</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-M" class="summary-letter"><b>M</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-N" class="summary-letter"><b>N</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-O" class="summary-letter"><b>O</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-P" class="summary-letter"><b>P</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-Q" class="summary-letter"><b>Q</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-R" class="summary-letter"><b>R</b></a>
+ &nbsp; 
+<a href="#index_split-4_cp_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="#index_split-4_cp_letter-T" class="summary-letter"><b>T</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-V" class="summary-letter"><b>V</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-W" class="summary-letter"><b>W</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-Y" class="summary-letter"><b>Y</b></a>
+ &nbsp; 
+</td></tr></table>
+<table border="0" class="index-cp">
+<tr><td></td><th align="left">Index Entry</th><th align="left"> Section</th></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="index_split-4_cp_letter-S">S</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-s_002e-_0028SCCS-file-prefix_0029"><code>s. <span class="roman">(SCCS file prefix)</span></code></a></td><td valign="top"><a href="make_10.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-SCCS_002c-rule-to-extract-from">SCCS, rule to extract from</a></td><td valign="top"><a href="make_10.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-search-algorithm_002c-implicit-rule">search algorithm, implicit rule</a></td><td valign="top"><a href="make_10.html#Implicit-Rule-Search">10.8 Implicit Rule Search Algorithm</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-search-path-for-prerequisites-_0028VPATH_0029">search path for prerequisites (<code>VPATH</code>)</a></td><td valign="top"><a href="make_4.html#Directory-Search">4.5 Searching Directories for Prerequisites</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-search-path-for-prerequisites-_0028VPATH_0029_002c-and-implicit-rules">search path for prerequisites (<code>VPATH</code>), and implicit rules</a></td><td valign="top"><a href="make_4.html#Implicit_002fSearch">4.5.5 Directory Search and Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-search-path-for-prerequisites-_0028VPATH_0029_002c-and-link-libraries">search path for prerequisites (<code>VPATH</code>), and link libraries</a></td><td valign="top"><a href="make_4.html#Libraries_002fSearch">4.5.6 Directory Search for Link Libraries</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-searching-for-strings">searching for strings</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-secondary-expansion">secondary expansion</a></td><td valign="top"><a href="make_3.html#Secondary-Expansion">3.10 Secondary Expansion</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-secondary-expansion-and-explicit-rules">secondary expansion and explicit rules</a></td><td valign="top"><a href="make_3.html#Secondary-Expansion-of-Explicit-Rules">Secondary Expansion of Explicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-secondary-expansion-and-implicit-rules">secondary expansion and implicit rules</a></td><td valign="top"><a href="make_3.html#Secondary-Expansion-of-Implicit-Rules">Secondary Expansion of Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-secondary-expansion-and-static-pattern-rules">secondary expansion and static pattern rules</a></td><td valign="top"><a href="make_3.html#Secondary-Expansion-of-Static-Pattern-Rules">Secondary Expansion of Static Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-secondary-files">secondary files</a></td><td valign="top"><a href="make_10.html#Chained-Rules">10.4 Chains of Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-secondary-targets">secondary targets</a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-sed-_0028shell-command_0029"><code>sed</code> (shell command)</a></td><td valign="top"><a href="make_4.html#Automatic-Prerequisites">4.14 Generating Prerequisites Automatically</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-selecting-a-word">selecting a word</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-selecting-word-lists">selecting word lists</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-sequences-of-commands">sequences of commands</a></td><td valign="top"><a href="make_5.html#Sequences">5.8 Defining Canned Command Sequences</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-setting-options-from-environment">setting options from environment</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-setting-options-in-makefiles">setting options in makefiles</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-setting-variables">setting variables</a></td><td valign="top"><a href="make_6.html#Setting">6.5 Setting Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-several-rules-for-one-target">several rules for one target</a></td><td valign="top"><a href="make_4.html#Multiple-Rules">4.11 Multiple Rules for One Target</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-several-targets-in-a-rule">several targets in a rule</a></td><td valign="top"><a href="make_4.html#Multiple-Targets">4.10 Multiple Targets in a Rule</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-shar-_0028standard-target_0029"><code>shar</code> <span class="roman">(standard target)</span></a></td><td valign="top"><a href="make_9.html#Goals">9.2 Arguments to Specify the Goals</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_2.html#index-shell-command">shell command</a></td><td valign="top"><a href="make_2.html#Simple-Makefile">2.2 A Simple Makefile</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-shell-command_002c-and-directory-search">shell command, and directory search</a></td><td valign="top"><a href="make_4.html#Commands_002fSearch">4.5.4 Writing Shell Commands with Directory Search</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-shell-command_002c-execution">shell command, execution</a></td><td valign="top"><a href="make_5.html#Execution">5.3 Command Execution</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-shell-command_002c-function-for">shell command, function for</a></td><td valign="top"><a href="make_8.html#Shell-Function">8.11 The <code>shell</code> Function</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-shell-file-name-pattern-_0028in-include_0029">shell file name pattern (in <code>include</code>)</a></td><td valign="top"><a href="make_3.html#Include">3.3 Including Other Makefiles</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-shell-variables_002c-setting-in-commands">shell variables, setting in commands</a></td><td valign="top"><a href="make_5.html#Execution">5.3 Command Execution</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-shell-wildcards-_0028in-include_0029">shell wildcards (in <code>include</code>)</a></td><td valign="top"><a href="make_3.html#Include">3.3 Including Other Makefiles</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-shell_002c-choosing-the">shell, choosing the</a></td><td valign="top"><a href="make_5.html#Choosing-the-Shell">5.3.1 Choosing the Shell</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-SHELL_002c-exported-value">SHELL, exported value</a></td><td valign="top"><a href="make_5.html#Variables_002fRecursion">5.7.2 Communicating Variables to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-SHELL_002c-import-from-environment">SHELL, import from environment</a></td><td valign="top"><a href="make_6.html#Environment">6.9 Variables from the Environment</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-shell_002c-in-DOS-and-Windows">shell, in DOS and Windows</a></td><td valign="top"><a href="make_5.html#Choosing-a-Shell-in-DOS-and-Windows">Choosing a Shell in DOS and Windows</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-SHELL_002c-MS_002dDOS-specifics"><code>SHELL</code>, MS-DOS specifics</a></td><td valign="top"><a href="make_5.html#Choosing-a-Shell-in-DOS-and-Windows">Choosing a Shell in DOS and Windows</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-SHELL_002c-value-of"><code>SHELL</code>, value of</a></td><td valign="top"><a href="make_5.html#Choosing-the-Shell">5.3.1 Choosing the Shell</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-signal">signal</a></td><td valign="top"><a href="make_5.html#Interrupts">5.6 Interrupting or Killing <code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-silent-operation">silent operation</a></td><td valign="top"><a href="make_5.html#Echoing">5.2 Command Echoing</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_2.html#index-simple-makefile">simple makefile</a></td><td valign="top"><a href="make_2.html#Simple-Makefile">2.2 A Simple Makefile</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-simple-variable-expansion">simple variable expansion</a></td><td valign="top"><a href="make_6.html#Using-Variables">6. How to Use Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_2.html#index-simplifying-with-variables">simplifying with variables</a></td><td valign="top"><a href="make_2.html#Variables-Simplify">2.4 Variables Make Makefiles Simpler</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-simply-expanded-variables">simply expanded variables</a></td><td valign="top"><a href="make_6.html#Flavors">6.2 The Two Flavors of Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-sorting-words">sorting words</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-spaces_002c-in-variable-values">spaces, in variable values</a></td><td valign="top"><a href="make_6.html#Flavors">6.2 The Two Flavors of Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-spaces_002c-stripping">spaces, stripping</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-special-targets">special targets</a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-special-variables">special variables</a></td><td valign="top"><a href="make_3.html#Special-Variables">3.6 Other Special Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-specifying-makefile-name">specifying makefile name</a></td><td valign="top"><a href="make_3.html#Makefile-Names">3.2 What Name to Give Your Makefile</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-splitting-commands">splitting commands</a></td><td valign="top"><a href="make_5.html#Splitting-Lines">5.1.1 Splitting Command Lines</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-standard-input">standard input</a></td><td valign="top"><a href="make_5.html#Parallel">5.4 Parallel Execution</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_1.html#index-standards-conformance">standards conformance</a></td><td valign="top"><a href="make_1.html#Overview">1. Overview of <code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_14.html#index-standards-for-makefiles">standards for makefiles</a></td><td valign="top"><a href="make_14.html#Makefile-Conventions">14. Makefile Conventions</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-static-pattern-rule">static pattern rule</a></td><td valign="top"><a href="make_4.html#Static-Pattern">4.12 Static Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-static-pattern-rule_002c-syntax-of">static pattern rule, syntax of</a></td><td valign="top"><a href="make_4.html#Static-Usage">4.12.1 Syntax of Static Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-static-pattern-rule_002c-versus-implicit">static pattern rule, versus implicit</a></td><td valign="top"><a href="make_4.html#Static-versus-Implicit">4.12.2 Static Pattern Rules versus Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-static-pattern-rules_002c-secondary-expansion-of">static pattern rules, secondary expansion of</a></td><td valign="top"><a href="make_3.html#Secondary-Expansion-of-Static-Pattern-Rules">Secondary Expansion of Static Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-stem">stem</a></td><td valign="top"><a href="make_4.html#Static-Usage">4.12.1 Syntax of Static Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-stem-1">stem</a></td><td valign="top"><a href="make_10.html#Pattern-Match">10.5.4 How Patterns Match</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-stem_002c-variable-for">stem, variable for</a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-stopping-make">stopping make</a></td><td valign="top"><a href="make_8.html#Make-Control-Functions">8.12 Functions That Control Make</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-strings_002c-searching-for">strings, searching for</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-stripping-whitespace">stripping whitespace</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-sub_002dmake">sub-<code>make</code></a></td><td valign="top"><a href="make_5.html#Variables_002fRecursion">5.7.2 Communicating Variables to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-subdirectories_002c-recursion-for">subdirectories, recursion for</a></td><td valign="top"><a href="make_5.html#Recursion">5.7 Recursive Use of <code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-substitution-variable-reference">substitution variable reference</a></td><td valign="top"><a href="make_6.html#Substitution-Refs">6.3.1 Substitution References</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-suffix-rule">suffix rule</a></td><td valign="top"><a href="make_10.html#Suffix-Rules">10.7 Old-Fashioned Suffix Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_11.html#index-suffix-rule_002c-for-archive">suffix rule, for archive</a></td><td valign="top"><a href="make_11.html#Archive-Suffix-Rules">11.4 Suffix Rules for Archive Files</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-suffix_002c-adding">suffix, adding</a></td><td valign="top"><a href="make_8.html#File-Name-Functions">8.3 Functions for File Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-suffix_002c-function-to-find">suffix, function to find</a></td><td valign="top"><a href="make_8.html#File-Name-Functions">8.3 Functions for File Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-suffix_002c-substituting-in-variables">suffix, substituting in variables</a></td><td valign="top"><a href="make_6.html#Substitution-Refs">6.3.1 Substitution References</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-switches">switches</a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_11.html#index-symbol-directories_002c-updating-archive">symbol directories, updating archive</a></td><td valign="top"><a href="make_11.html#Archive-Symbols">11.2.1 Updating Archive Symbol Directories</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-syntax-of-commands">syntax of commands</a></td><td valign="top"><a href="make_5.html#Command-Syntax">5.1 Command Syntax</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-syntax-of-rules">syntax of rules</a></td><td valign="top"><a href="make_4.html#Rule-Syntax">4.2 Rule Syntax</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="index_split-4_cp_letter-T">T</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-tab-character-_0028in-commands_0029">tab character (in commands)</a></td><td valign="top"><a href="make_4.html#Rule-Syntax">4.2 Rule Syntax</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_2.html#index-tabs-in-rules">tabs in rules</a></td><td valign="top"><a href="make_2.html#Rule-Introduction">2.1 What a Rule Looks Like</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-TAGS-_0028standard-target_0029"><code>TAGS</code> <span class="roman">(standard target)</span></a></td><td valign="top"><a href="make_9.html#Goals">9.2 Arguments to Specify the Goals</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-tangle"><code>tangle</code></a></td><td valign="top"><a href="make_10.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-tangle-1"><code>tangle</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-tar-_0028standard-target_0029"><code>tar</code> <span class="roman">(standard target)</span></a></td><td valign="top"><a href="make_9.html#Goals">9.2 Arguments to Specify the Goals</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-target">target</a></td><td valign="top"><a href="make_4.html#Rules">4. Writing Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-target-pattern_002c-implicit">target pattern, implicit</a></td><td valign="top"><a href="make_10.html#Pattern-Intro">10.5.1 Introduction to Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-target-pattern_002c-static-_0028not-implicit_0029">target pattern, static (not implicit)</a></td><td valign="top"><a href="make_4.html#Static-Usage">4.12.1 Syntax of Static Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-target_002c-deleting-on-error">target, deleting on error</a></td><td valign="top"><a href="make_5.html#Errors">5.5 Errors in Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-target_002c-deleting-on-interrupt">target, deleting on interrupt</a></td><td valign="top"><a href="make_5.html#Interrupts">5.6 Interrupting or Killing <code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-target_002c-expansion">target, expansion</a></td><td valign="top"><a href="make_3.html#Rule-Definition">Rule Definition</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-target_002c-multiple-in-pattern-rule">target, multiple in pattern rule</a></td><td valign="top"><a href="make_10.html#Pattern-Intro">10.5.1 Introduction to Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-target_002c-multiple-rules-for-one">target, multiple rules for one</a></td><td valign="top"><a href="make_4.html#Multiple-Rules">4.11 Multiple Rules for One Target</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-target_002c-touching">target, touching</a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-target_002dspecific-variables">target-specific variables</a></td><td valign="top"><a href="make_6.html#Target_002dspecific">6.10 Target-specific Variable Values</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-targets">targets</a></td><td valign="top"><a href="make_4.html#Rule-Syntax">4.2 Rule Syntax</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-targets-without-a-file">targets without a file</a></td><td valign="top"><a href="make_4.html#Phony-Targets">4.6 Phony Targets</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-targets_002c-built_002din-special">targets, built-in special</a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-targets_002c-empty">targets, empty</a></td><td valign="top"><a href="make_4.html#Empty-Targets">4.8 Empty Target Files to Record Events</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-targets_002c-force">targets, force</a></td><td valign="top"><a href="make_4.html#Force-Targets">4.7 Rules without Commands or Prerequisites</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_2.html#index-targets_002c-introduction-to">targets, introduction to</a></td><td valign="top"><a href="make_2.html#Rule-Introduction">2.1 What a Rule Looks Like</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-targets_002c-multiple">targets, multiple</a></td><td valign="top"><a href="make_4.html#Multiple-Targets">4.10 Multiple Targets in a Rule</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-targets_002c-phony">targets, phony</a></td><td valign="top"><a href="make_4.html#Phony-Targets">4.6 Phony Targets</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-terminal-rule">terminal rule</a></td><td valign="top"><a href="make_10.html#Match_002dAnything-Rules">10.5.5 Match-Anything Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-test-_0028standard-target_0029"><code>test</code> <span class="roman">(standard target)</span></a></td><td valign="top"><a href="make_9.html#Goals">9.2 Arguments to Specify the Goals</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-testing-compilation">testing compilation</a></td><td valign="top"><a href="make_9.html#Testing">9.6 Testing the Compilation of a Program</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-tex"><code>tex</code></a></td><td valign="top"><a href="make_10.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-tex-1"><code>tex</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-TeX_002c-rule-to-run">TeX, rule to run</a></td><td valign="top"><a href="make_10.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-texi2dvi"><code>texi2dvi</code></a></td><td valign="top"><a href="make_10.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-texi2dvi-1"><code>texi2dvi</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-Texinfo_002c-rule-to-format">Texinfo, rule to format</a></td><td valign="top"><a href="make_10.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-tilde-_0028_007e_0029">tilde (<code>~</code>)</a></td><td valign="top"><a href="make_4.html#Wildcards">4.4 Using Wildcard Characters in File Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-touch-_0028shell-command_0029"><code>touch</code> (shell command)</a></td><td valign="top"><a href="make_4.html#Wildcard-Examples">4.4.1 Wildcard Examples</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-touch-_0028shell-command_0029-1"><code>touch</code> (shell command)</a></td><td valign="top"><a href="make_4.html#Empty-Targets">4.8 Empty Target Files to Record Events</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-touching-files">touching files</a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-traditional-directory-search-_0028GPATH_0029">traditional directory search (GPATH)</a></td><td valign="top"><a href="make_4.html#Search-Algorithm">4.5.3 How Directory Searches are Performed</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-types-of-prerequisites">types of prerequisites</a></td><td valign="top"><a href="make_4.html#Prerequisite-Types">4.3 Types of Prerequisites</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="make_19.html#Index-of-Concepts_cp_symbol-1" class="summary-letter"><b>#</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-2" class="summary-letter"><b>$</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-3" class="summary-letter"><b>%</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-4" class="summary-letter"><b>*</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-5" class="summary-letter"><b>+</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-6" class="summary-letter"><b>,</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-7" class="summary-letter"><b>-</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-8" class="summary-letter"><b>.</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-9" class="summary-letter"><b>:</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-10" class="summary-letter"><b>=</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-11" class="summary-letter"><b>?</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-12" class="summary-letter"><b>@</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-13" class="summary-letter"><b>[</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-14" class="summary-letter"><b>\</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-15" class="summary-letter"><b>_</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-16" class="summary-letter"><b>~</b></a>
+ &nbsp; 
+<br>
+<a href="make_20.html#index_split-0_cp_letter-A" class="summary-letter"><b>A</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_letter-B" class="summary-letter"><b>B</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_letter-C" class="summary-letter"><b>C</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-E" class="summary-letter"><b>E</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-F" class="summary-letter"><b>F</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-G" class="summary-letter"><b>G</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-I" class="summary-letter"><b>I</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-J" class="summary-letter"><b>J</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-K" class="summary-letter"><b>K</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-M" class="summary-letter"><b>M</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-N" class="summary-letter"><b>N</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-O" class="summary-letter"><b>O</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-P" class="summary-letter"><b>P</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-Q" class="summary-letter"><b>Q</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-R" class="summary-letter"><b>R</b></a>
+ &nbsp; 
+<a href="#index_split-4_cp_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="#index_split-4_cp_letter-T" class="summary-letter"><b>T</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-V" class="summary-letter"><b>V</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-W" class="summary-letter"><b>W</b></a>
+ &nbsp; 
+<a href="make_25.html#index_split-5_cp_letter-Y" class="summary-letter"><b>Y</b></a>
+ &nbsp; 
+</td></tr></table>
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make_18.html#GNU-Free-Documentation-License" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make_26.html#Name-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>October 20, 2021</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

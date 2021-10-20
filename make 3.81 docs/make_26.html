@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This file documents the GNU make utility, which determines
+automatically which pieces of a large program need to be recompiled,
+and issues the commands to recompile them.
+
+This is Edition 0.70, last updated 1 April 2006,
+of The GNU Make Manual, for GNU make version 3.81.
+
+Copyright C 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
+1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2005, 2006
+Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the
+license is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and modify
+this GNU Manual, like GNU software.  Copies published by the Free
+Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on October 20, 2021 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU make: Index of Functions, Variables, &amp; Directives</title>
+
+<meta name="description" content="GNU make: Index of Functions, Variables, &amp; Directives">
+<meta name="keywords" content="GNU make: Index of Functions, Variables, &amp; Directives">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Name-Index"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make_25.html#index_split-5" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make_27.html#index_split-6" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[ &gt;&gt; ]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Index-of-Functions_002c-Variables_002c-_0026-Directives"></a>
+<h1 class="unnumbered">Index of Functions, Variables, &amp; Directives</h1>
+
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-1" class="summary-letter"><b>$</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-2" class="summary-letter"><b>%</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-3" class="summary-letter"><b>*</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-4" class="summary-letter"><b>+</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-5" class="summary-letter"><b>.</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-6" class="summary-letter"><b>/</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-7" class="summary-letter"><b>&lt;</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-8" class="summary-letter"><b>?</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-9" class="summary-letter"><b>@</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-10" class="summary-letter"><b>^</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-11" class="summary-letter"><b>|</b></a>
+ &nbsp; 
+<br>
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_letter-A" class="summary-letter"><b>A</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_letter-B" class="summary-letter"><b>B</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_letter-C" class="summary-letter"><b>C</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-E" class="summary-letter"><b>E</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-F" class="summary-letter"><b>F</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-G" class="summary-letter"><b>G</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-I" class="summary-letter"><b>I</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-J" class="summary-letter"><b>J</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-M" class="summary-letter"><b>M</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-N" class="summary-letter"><b>N</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-O" class="summary-letter"><b>O</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-P" class="summary-letter"><b>P</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-R" class="summary-letter"><b>R</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-T" class="summary-letter"><b>T</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-V" class="summary-letter"><b>V</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-W" class="summary-letter"><b>W</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-Y" class="summary-letter"><b>Y</b></a>
+ &nbsp; 
+</td></tr></table>
+<table border="0" class="index-fn">
+<tr><td></td><th align="left">Index Entry</th><th align="left"> Section</th></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-1">$</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0025"><code>$%</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_0025D_0029"><code>$(%D)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_0025F_0029"><code>$(%F)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_002aD_0029"><code>$(*D)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_002aF_0029"><code>$(*F)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_002bD_0029"><code>$(+D)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_002bF_0029"><code>$(+F)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_003cD_0029"><code>$(&lt;D)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_003cF_0029"><code>$(&lt;F)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_003fD_0029"><code>$(?D)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_003fF_0029"><code>$(?F)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_0040D_0029"><code>$(@D)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_0040F_0029"><code>$(@F)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_005eD_0029"><code>$(^D)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0028_005eF_0029"><code>$(^F)</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_002a"><code>$*</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_0024_002a_002c-and-static-pattern"><code>$*<span class="roman">, and static pattern</span></code></a></td><td valign="top"><a href="make_4.html#Static-Usage">4.12.1 Syntax of Static Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_002b"><code>$+</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_003c"><code>$&lt;</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_003f"><code>$?</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_0040"><code>$@</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_005e"><code>$^</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0024_007c"><code>$|</code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-2">%</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0025-_0028automatic-variable_0029"><code>% <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0025D-_0028automatic-variable_0029"><code>%D <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0025F-_0028automatic-variable_0029"><code>%F <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-3">*</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_002a-_0028automatic-variable_0029"><code>* <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_13.html#index-_002a-_0028automatic-variable_0029_002c-unsupported-bizarre-usage"><code>* <span class="roman">(automatic variable), unsupported bizarre usage</span></code></a></td><td valign="top"><a href="make_13.html#Missing">13. Incompatibilities and Missing Features</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_002aD-_0028automatic-variable_0029"><code>*D <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_002aF-_0028automatic-variable_0029"><code>*F <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-4">+</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_002b-_0028automatic-variable_0029"><code>+ <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_002bD-_0028automatic-variable_0029"><code>+D <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_002bF-_0028automatic-variable_0029"><code>+F <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-5">.</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002eDEFAULT"><code>.DEFAULT</code></a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_002eDEFAULT-1"><code>.DEFAULT</code></a></td><td valign="top"><a href="make_10.html#Last-Resort">10.6 Defining Last-Resort Default Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002eDEFAULT_002c-and-empty-commands"><code>.DEFAULT<span class="roman">, and empty commands</span></code></a></td><td valign="top"><a href="make_5.html#Empty-Commands">5.9 Using Empty Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002eDEFAULT_005fGOAL-_0028define-default-goal_0029"><code>.DEFAULT_GOAL <span class="roman">(define default goal)</span></code></a></td><td valign="top"><a href="make_3.html#Special-Variables">3.6 Other Special Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002eDELETE_005fON_005fERROR"><code>.DELETE_ON_ERROR</code></a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002eDELETE_005fON_005fERROR-1"><code>.DELETE_ON_ERROR</code></a></td><td valign="top"><a href="make_5.html#Errors">5.5 Errors in Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002eEXPORT_005fALL_005fVARIABLES"><code>.EXPORT_ALL_VARIABLES</code></a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002eEXPORT_005fALL_005fVARIABLES-1"><code>.EXPORT_ALL_VARIABLES</code></a></td><td valign="top"><a href="make_5.html#Variables_002fRecursion">5.7.2 Communicating Variables to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002eFEATURES-_0028list-of-supported-features_0029"><code>.FEATURES <span class="roman">(list of supported features)</span></code></a></td><td valign="top"><a href="make_3.html#Special-Variables">3.6 Other Special Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002eIGNORE"><code>.IGNORE</code></a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002eIGNORE-1"><code>.IGNORE</code></a></td><td valign="top"><a href="make_5.html#Errors">5.5 Errors in Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002eINCLUDE_005fDIRS-_0028list-of-include-directories_0029"><code>.INCLUDE_DIRS <span class="roman">(list of include directories)</span></code></a></td><td valign="top"><a href="make_3.html#Special-Variables">3.6 Other Special Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002eINTERMEDIATE"><code>.INTERMEDIATE</code></a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002eLIBPATTERNS"><code>.LIBPATTERNS</code></a></td><td valign="top"><a href="make_4.html#Libraries_002fSearch">4.5.6 Directory Search for Link Libraries</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002eLOW_005fRESOLUTION_005fTIME"><code>.LOW_RESOLUTION_TIME</code></a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002eNOTPARALLEL"><code>.NOTPARALLEL</code></a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002ePHONY"><code>.PHONY</code></a></td><td valign="top"><a href="make_4.html#Phony-Targets">4.6 Phony Targets</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002ePHONY-1"><code>.PHONY</code></a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002ePOSIX"><code>.POSIX</code></a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002ePRECIOUS"><code>.PRECIOUS</code></a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002ePRECIOUS-1"><code>.PRECIOUS</code></a></td><td valign="top"><a href="make_5.html#Interrupts">5.6 Interrupting or Killing <code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002eSECONDARY"><code>.SECONDARY</code></a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002eSECONDEXPANSION"><code>.SECONDEXPANSION</code></a></td><td valign="top"><a href="make_3.html#Secondary-Expansion">3.10 Secondary Expansion</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002eSECONDEXPANSION-1"><code>.SECONDEXPANSION</code></a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002eSILENT"><code>.SILENT</code></a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-_002eSILENT-1"><code>.SILENT</code></a></td><td valign="top"><a href="make_5.html#Echoing">5.2 Command Echoing</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-_002eSUFFIXES"><code>.SUFFIXES</code></a></td><td valign="top"><a href="make_4.html#Special-Targets">4.9 Special Built-in Target Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_002eSUFFIXES-1"><code>.SUFFIXES</code></a></td><td valign="top"><a href="make_10.html#Suffix-Rules">10.7 Old-Fashioned Suffix Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002eVARIABLES-_0028list-of-variables_0029"><code>.VARIABLES <span class="roman">(list of variables)</span></code></a></td><td valign="top"><a href="make_3.html#Special-Variables">3.6 Other Special Variables</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-6">/</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002fusr_002fgnu_002finclude"><code>/usr/gnu/include</code></a></td><td valign="top"><a href="make_3.html#Include">3.3 Including Other Makefiles</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002fusr_002finclude"><code>/usr/include</code></a></td><td valign="top"><a href="make_3.html#Include">3.3 Including Other Makefiles</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-_002fusr_002flocal_002finclude"><code>/usr/local/include</code></a></td><td valign="top"><a href="make_3.html#Include">3.3 Including Other Makefiles</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-7">&lt;</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_003c-_0028automatic-variable_0029"><code>&lt; <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_003cD-_0028automatic-variable_0029"><code>&lt;D <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_003cF-_0028automatic-variable_0029"><code>&lt;F <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-8">?</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_003f-_0028automatic-variable_0029"><code>? <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_003fD-_0028automatic-variable_0029"><code>?D <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_003fF-_0028automatic-variable_0029"><code>?F <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-9">@</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0040-_0028automatic-variable_0029"><code>@ <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0040D-_0028automatic-variable_0029"><code>@D <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_0040F-_0028automatic-variable_0029"><code>@F <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-10">^</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_005e-_0028automatic-variable_0029"><code>^ <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_005eD-_0028automatic-variable_0029"><code>^D <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_005eF-_0028automatic-variable_0029"><code>^F <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-11">|</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-_007c-_0028automatic-variable_0029"><code>| <span class="roman">(automatic variable)</span></code></a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_letter-A">A</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-abspath"><code>abspath</code></a></td><td valign="top"><a href="make_8.html#File-Name-Functions">8.3 Functions for File Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-addprefix"><code>addprefix</code></a></td><td valign="top"><a href="make_8.html#File-Name-Functions">8.3 Functions for File Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-addsuffix"><code>addsuffix</code></a></td><td valign="top"><a href="make_8.html#File-Name-Functions">8.3 Functions for File Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-and"><code>and</code></a></td><td valign="top"><a href="make_8.html#Conditional-Functions">8.4 Functions for Conditionals</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-AR"><code>AR</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-ARFLAGS"><code>ARFLAGS</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-AS"><code>AS</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-ASFLAGS"><code>ASFLAGS</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_letter-B">B</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-basename"><code>basename</code></a></td><td valign="top"><a href="make_8.html#File-Name-Functions">8.3 Functions for File Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_14.html#index-bindir"><code>bindir</code></a></td><td valign="top"><a href="make_14.html#Directory-Variables">14.4 Variables for Installation Directories</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_letter-C">C</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-call"><code>call</code></a></td><td valign="top"><a href="make_8.html#Call-Function">8.6 The <code>call</code> Function</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-CC"><code>CC</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-CFLAGS"><code>CFLAGS</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-CO"><code>CO</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-CO-1"><code>CO</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-COFLAGS"><code>COFLAGS</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-COMSPEC"><code>COMSPEC</code></a></td><td valign="top"><a href="make_5.html#Choosing-a-Shell-in-DOS-and-Windows">Choosing a Shell in DOS and Windows</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-CPP"><code>CPP</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-CPPFLAGS"><code>CPPFLAGS</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-CTANGLE"><code>CTANGLE</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-CURDIR"><code><code>CURDIR</code></code></a></td><td valign="top"><a href="make_5.html#Recursion">5.7 Recursive Use of <code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-CWEAVE"><code>CWEAVE</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-CXX"><code>CXX</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-CXXFLAGS"><code>CXXFLAGS</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-1" class="summary-letter"><b>$</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-2" class="summary-letter"><b>%</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-3" class="summary-letter"><b>*</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-4" class="summary-letter"><b>+</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-5" class="summary-letter"><b>.</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-6" class="summary-letter"><b>/</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-7" class="summary-letter"><b>&lt;</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-8" class="summary-letter"><b>?</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-9" class="summary-letter"><b>@</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-10" class="summary-letter"><b>^</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_symbol-11" class="summary-letter"><b>|</b></a>
+ &nbsp; 
+<br>
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_letter-A" class="summary-letter"><b>A</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_letter-B" class="summary-letter"><b>B</b></a>
+ &nbsp; 
+<a href="#Index-of-Functions_002c-Variables_002c-_0026-Directives_fn_letter-C" class="summary-letter"><b>C</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-E" class="summary-letter"><b>E</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-F" class="summary-letter"><b>F</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-G" class="summary-letter"><b>G</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-I" class="summary-letter"><b>I</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-J" class="summary-letter"><b>J</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-M" class="summary-letter"><b>M</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-N" class="summary-letter"><b>N</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-O" class="summary-letter"><b>O</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-P" class="summary-letter"><b>P</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-R" class="summary-letter"><b>R</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-T" class="summary-letter"><b>T</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-V" class="summary-letter"><b>V</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-W" class="summary-letter"><b>W</b></a>
+ &nbsp; 
+<a href="make_27.html#index_split-6_fn_letter-Y" class="summary-letter"><b>Y</b></a>
+ &nbsp; 
+</td></tr></table>
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[ &gt;&gt; ]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>October 20, 2021</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

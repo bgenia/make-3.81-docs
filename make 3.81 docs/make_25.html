@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This file documents the GNU make utility, which determines
+automatically which pieces of a large program need to be recompiled,
+and issues the commands to recompile them.
+
+This is Edition 0.70, last updated 1 April 2006,
+of The GNU Make Manual, for GNU make version 3.81.
+
+Copyright C 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995,
+1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2005, 2006
+Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the
+license is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and modify
+this GNU Manual, like GNU software.  Copies published by the Free
+Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on October 20, 2021 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNU make: Index of Concepts: U &ndash; Y</title>
+
+<meta name="description" content="GNU make: Index of Concepts: U &ndash; Y">
+<meta name="keywords" content="GNU make: Index of Concepts: U &ndash; Y">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="index_split-5"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make_24.html#index_split-4" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make_26.html#Name-Index" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make_18.html#GNU-Free-Documentation-License" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="make_26.html#Name-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1 class="unnumbered">Index of Concepts: U &ndash; Y</h1>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="make_19.html#Index-of-Concepts_cp_symbol-1" class="summary-letter"><b>#</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-2" class="summary-letter"><b>$</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-3" class="summary-letter"><b>%</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-4" class="summary-letter"><b>*</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-5" class="summary-letter"><b>+</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-6" class="summary-letter"><b>,</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-7" class="summary-letter"><b>-</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-8" class="summary-letter"><b>.</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-9" class="summary-letter"><b>:</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-10" class="summary-letter"><b>=</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-11" class="summary-letter"><b>?</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-12" class="summary-letter"><b>@</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-13" class="summary-letter"><b>[</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-14" class="summary-letter"><b>\</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-15" class="summary-letter"><b>_</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-16" class="summary-letter"><b>~</b></a>
+ &nbsp; 
+<br>
+<a href="make_20.html#index_split-0_cp_letter-A" class="summary-letter"><b>A</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_letter-B" class="summary-letter"><b>B</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_letter-C" class="summary-letter"><b>C</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-E" class="summary-letter"><b>E</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-F" class="summary-letter"><b>F</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-G" class="summary-letter"><b>G</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-I" class="summary-letter"><b>I</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-J" class="summary-letter"><b>J</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-K" class="summary-letter"><b>K</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-M" class="summary-letter"><b>M</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-N" class="summary-letter"><b>N</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-O" class="summary-letter"><b>O</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-P" class="summary-letter"><b>P</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-Q" class="summary-letter"><b>Q</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-R" class="summary-letter"><b>R</b></a>
+ &nbsp; 
+<a href="make_24.html#index_split-4_cp_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="make_24.html#index_split-4_cp_letter-T" class="summary-letter"><b>T</b></a>
+ &nbsp; 
+<a href="#index_split-5_cp_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+<a href="#index_split-5_cp_letter-V" class="summary-letter"><b>V</b></a>
+ &nbsp; 
+<a href="#index_split-5_cp_letter-W" class="summary-letter"><b>W</b></a>
+ &nbsp; 
+<a href="#index_split-5_cp_letter-Y" class="summary-letter"><b>Y</b></a>
+ &nbsp; 
+</td></tr></table>
+<table border="0" class="index-cp">
+<tr><td></td><th align="left">Index Entry</th><th align="left"> Section</th></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="index_split-5_cp_letter-U">U</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-undefined-variables_002c-warning-message">undefined variables, warning message</a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_11.html#index-updating-archive-symbol-directories">updating archive symbol directories</a></td><td valign="top"><a href="make_11.html#Archive-Symbols">11.2.1 Updating Archive Symbol Directories</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-updating-makefiles">updating makefiles</a></td><td valign="top"><a href="make_3.html#Remaking-Makefiles">3.7 How Makefiles Are Remade</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-user-defined-functions">user defined functions</a></td><td valign="top"><a href="make_8.html#Call-Function">8.6 The <code>call</code> Function</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="index_split-5_cp_letter-V">V</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-value">value</a></td><td valign="top"><a href="make_6.html#Using-Variables">6. How to Use Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-value_002c-how-a-variable-gets-it">value, how a variable gets it</a></td><td valign="top"><a href="make_6.html#Values">6.4 How Variables Get Their Values</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variable">variable</a></td><td valign="top"><a href="make_6.html#Using-Variables">6. How to Use Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-variable-definition">variable definition</a></td><td valign="top"><a href="make_3.html#Makefile-Contents">3.1 What Makefiles Contain</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-variable-references-in-commands">variable references in commands</a></td><td valign="top"><a href="make_5.html#Variables-in-Commands">5.1.2 Using Variables in Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_2.html#index-variables">variables</a></td><td valign="top"><a href="make_2.html#Variables-Simplify">2.4 Variables Make Makefiles Simpler</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-_0024-in-name">variables, &lsquo;<samp>$</samp>&rsquo; in name</a></td><td valign="top"><a href="make_6.html#Computed-Names">6.3.2 Computed Variable Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-variables_002c-and-implicit-rule">variables, and implicit rule</a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-appending-to">variables, appending to</a></td><td valign="top"><a href="make_6.html#Appending">6.6 Appending More Text to Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-variables_002c-automatic">variables, automatic</a></td><td valign="top"><a href="make_10.html#Automatic-Variables">10.5.3 Automatic Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-variables_002c-command-line">variables, command line</a></td><td valign="top"><a href="make_9.html#Overriding">9.5 Overriding Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-variables_002c-command-line_002c-and-recursion">variables, command line, and recursion</a></td><td valign="top"><a href="make_5.html#Options_002fRecursion">5.7.3 Communicating Options to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-computed-names">variables, computed names</a></td><td valign="top"><a href="make_6.html#Computed-Names">6.3.2 Computed Variable Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-conditional-assignment">variables, conditional assignment</a></td><td valign="top"><a href="make_6.html#Flavors">6.2 The Two Flavors of Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-defining-verbatim">variables, defining verbatim</a></td><td valign="top"><a href="make_6.html#Defining">6.8 Defining Variables Verbatim</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-variables_002c-environment">variables, environment</a></td><td valign="top"><a href="make_5.html#Variables_002fRecursion">5.7.2 Communicating Variables to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-environment-1">variables, environment</a></td><td valign="top"><a href="make_6.html#Environment">6.9 Variables from the Environment</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-variables_002c-exporting">variables, exporting</a></td><td valign="top"><a href="make_5.html#Variables_002fRecursion">5.7.2 Communicating Variables to a Sub-<code>make</code></a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-variables_002c-flavor-of">variables, flavor of</a></td><td valign="top"><a href="make_8.html#Flavor-Function">8.10 The <code>flavor</code> Function</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-flavors">variables, flavors</a></td><td valign="top"><a href="make_6.html#Flavors">6.2 The Two Flavors of Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-how-they-get-their-values">variables, how they get their values</a></td><td valign="top"><a href="make_6.html#Values">6.4 How Variables Get Their Values</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-how-to-reference">variables, how to reference</a></td><td valign="top"><a href="make_6.html#Reference">6.1 Basics of Variable References</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-loops-in-expansion">variables, loops in expansion</a></td><td valign="top"><a href="make_6.html#Flavors">6.2 The Two Flavors of Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-modified-reference">variables, modified reference</a></td><td valign="top"><a href="make_6.html#Substitution-Refs">6.3.1 Substitution References</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-nested-references">variables, nested references</a></td><td valign="top"><a href="make_6.html#Computed-Names">6.3.2 Computed Variable Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-variables_002c-origin-of">variables, origin of</a></td><td valign="top"><a href="make_8.html#Origin-Function">8.9 The <code>origin</code> Function</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-overriding">variables, overriding</a></td><td valign="top"><a href="make_6.html#Override-Directive">6.7 The <code>override</code> Directive</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-variables_002c-overriding-with-arguments">variables, overriding with arguments</a></td><td valign="top"><a href="make_9.html#Overriding">9.5 Overriding Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-pattern_002dspecific">variables, pattern-specific</a></td><td valign="top"><a href="make_6.html#Pattern_002dspecific">6.11 Pattern-specific Variable Values</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-recursively-expanded">variables, recursively expanded</a></td><td valign="top"><a href="make_6.html#Flavors">6.2 The Two Flavors of Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-setting">variables, setting</a></td><td valign="top"><a href="make_6.html#Setting">6.5 Setting Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-simply-expanded">variables, simply expanded</a></td><td valign="top"><a href="make_6.html#Flavors">6.2 The Two Flavors of Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-spaces-in-values">variables, spaces in values</a></td><td valign="top"><a href="make_6.html#Flavors">6.2 The Two Flavors of Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-substituting-suffix-in">variables, substituting suffix in</a></td><td valign="top"><a href="make_6.html#Substitution-Refs">6.3.1 Substitution References</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-substitution-reference">variables, substitution reference</a></td><td valign="top"><a href="make_6.html#Substitution-Refs">6.3.1 Substitution References</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-variables_002c-target_002dspecific">variables, target-specific</a></td><td valign="top"><a href="make_6.html#Target_002dspecific">6.10 Target-specific Variable Values</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-variables_002c-unexpanded-value">variables, unexpanded value</a></td><td valign="top"><a href="make_8.html#Value-Function">8.7 The <code>value</code> Function</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-variables_002c-warning-for-undefined">variables, warning for undefined</a></td><td valign="top"><a href="make_9.html#Options-Summary">9.7 Summary of Options</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-varying-prerequisites">varying prerequisites</a></td><td valign="top"><a href="make_4.html#Static-Pattern">4.12 Static Pattern Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-verbatim-variable-definition">verbatim variable definition</a></td><td valign="top"><a href="make_6.html#Defining">6.8 Defining Variables Verbatim</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-vpath-1">vpath</a></td><td valign="top"><a href="make_4.html#Directory-Search">4.5 Searching Directories for Prerequisites</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-VPATH_002c-and-implicit-rules"><code>VPATH</code>, and implicit rules</a></td><td valign="top"><a href="make_4.html#Implicit_002fSearch">4.5.5 Directory Search and Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-VPATH_002c-and-link-libraries"><code>VPATH</code>, and link libraries</a></td><td valign="top"><a href="make_4.html#Libraries_002fSearch">4.5.6 Directory Search for Link Libraries</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="index_split-5_cp_letter-W">W</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-warnings_002c-printing">warnings, printing</a></td><td valign="top"><a href="make_8.html#Make-Control-Functions">8.12 Functions That Control Make</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-weave"><code>weave</code></a></td><td valign="top"><a href="make_10.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-weave-1"><code>weave</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-Web_002c-rule-to-run">Web, rule to run</a></td><td valign="top"><a href="make_10.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_9.html#index-what-if">what if</a></td><td valign="top"><a href="make_9.html#Instead-of-Execution">9.3 Instead of Executing the Commands</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_6.html#index-whitespace_002c-in-variable-values">whitespace, in variable values</a></td><td valign="top"><a href="make_6.html#Flavors">6.2 The Two Flavors of Variables</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-whitespace_002c-stripping">whitespace, stripping</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-wildcard">wildcard</a></td><td valign="top"><a href="make_4.html#Wildcards">4.4 Using Wildcard Characters in File Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-wildcard-pitfalls">wildcard pitfalls</a></td><td valign="top"><a href="make_4.html#Wildcard-Pitfall">4.4.2 Pitfalls of Using Wildcards</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-wildcard_002c-function">wildcard, function</a></td><td valign="top"><a href="make_8.html#File-Name-Functions">8.3 Functions for File Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_11.html#index-wildcard_002c-in-archive-member">wildcard, in archive member</a></td><td valign="top"><a href="make_11.html#Archive-Members">11.1 Archive Members as Targets</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_3.html#index-wildcard_002c-in-include">wildcard, in <code>include</code></a></td><td valign="top"><a href="make_3.html#Include">3.3 Including Other Makefiles</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-wildcards-and-MS_002dDOS_002fMS_002dWindows-backslashes">wildcards and MS-DOS/MS-Windows backslashes</a></td><td valign="top"><a href="make_4.html#Wildcard-Pitfall">4.4.2 Pitfalls of Using Wildcards</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-Windows_002c-choosing-a-shell-in">Windows, choosing a shell in</a></td><td valign="top"><a href="make_5.html#Choosing-a-Shell-in-DOS-and-Windows">Choosing a Shell in DOS and Windows</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-word_002c-selecting-a">word, selecting a</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-words_002c-extracting-first">words, extracting first</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-words_002c-extracting-last">words, extracting last</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-words_002c-filtering">words, filtering</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-words_002c-filtering-out">words, filtering out</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-words_002c-finding-number">words, finding number</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-words_002c-iterating-over">words, iterating over</a></td><td valign="top"><a href="make_8.html#Foreach-Function">8.5 The <code>foreach</code> Function</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-words_002c-joining-lists">words, joining lists</a></td><td valign="top"><a href="make_8.html#File-Name-Functions">8.3 Functions for File Names</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-words_002c-removing-duplicates">words, removing duplicates</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_8.html#index-words_002c-selecting-lists-of">words, selecting lists of</a></td><td valign="top"><a href="make_8.html#Text-Functions">8.2 Functions for String Substitution and Analysis</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_5.html#index-writing-rule-commands">writing rule commands</a></td><td valign="top"><a href="make_5.html#Commands">5. Writing the Commands in Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_4.html#index-writing-rules">writing rules</a></td><td valign="top"><a href="make_4.html#Rules">4. Writing Rules</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+<tr><th><a name="index_split-5_cp_letter-Y">Y</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-yacc-1"><code>yacc</code></a></td><td valign="top"><a href="make_10.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-yacc-2"><code>yacc</code></a></td><td valign="top"><a href="make_10.html#Implicit-Variables">10.3 Variables Used by Implicit Rules</a></td></tr>
+<tr><td></td><td valign="top"><a href="make_10.html#index-Yacc_002c-rule-to-run">Yacc, rule to run</a></td><td valign="top"><a href="make_10.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></td></tr>
+<tr><td colspan="3"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a href="make_19.html#Index-of-Concepts_cp_symbol-1" class="summary-letter"><b>#</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-2" class="summary-letter"><b>$</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-3" class="summary-letter"><b>%</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-4" class="summary-letter"><b>*</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-5" class="summary-letter"><b>+</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-6" class="summary-letter"><b>,</b></a>
+ &nbsp; 
+<a href="make_19.html#Index-of-Concepts_cp_symbol-7" class="summary-letter"><b>-</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-8" class="summary-letter"><b>.</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-9" class="summary-letter"><b>:</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-10" class="summary-letter"><b>=</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-11" class="summary-letter"><b>?</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-12" class="summary-letter"><b>@</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-13" class="summary-letter"><b>[</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-14" class="summary-letter"><b>\</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-15" class="summary-letter"><b>_</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_symbol-16" class="summary-letter"><b>~</b></a>
+ &nbsp; 
+<br>
+<a href="make_20.html#index_split-0_cp_letter-A" class="summary-letter"><b>A</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_letter-B" class="summary-letter"><b>B</b></a>
+ &nbsp; 
+<a href="make_20.html#index_split-0_cp_letter-C" class="summary-letter"><b>C</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-D" class="summary-letter"><b>D</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-E" class="summary-letter"><b>E</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-F" class="summary-letter"><b>F</b></a>
+ &nbsp; 
+<a href="make_21.html#index_split-1_cp_letter-G" class="summary-letter"><b>G</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-H" class="summary-letter"><b>H</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-I" class="summary-letter"><b>I</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-J" class="summary-letter"><b>J</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-K" class="summary-letter"><b>K</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-L" class="summary-letter"><b>L</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-M" class="summary-letter"><b>M</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-N" class="summary-letter"><b>N</b></a>
+ &nbsp; 
+<a href="make_22.html#index_split-2_cp_letter-O" class="summary-letter"><b>O</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-P" class="summary-letter"><b>P</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-Q" class="summary-letter"><b>Q</b></a>
+ &nbsp; 
+<a href="make_23.html#index_split-3_cp_letter-R" class="summary-letter"><b>R</b></a>
+ &nbsp; 
+<a href="make_24.html#index_split-4_cp_letter-S" class="summary-letter"><b>S</b></a>
+ &nbsp; 
+<a href="make_24.html#index_split-4_cp_letter-T" class="summary-letter"><b>T</b></a>
+ &nbsp; 
+<a href="#index_split-5_cp_letter-U" class="summary-letter"><b>U</b></a>
+ &nbsp; 
+<a href="#index_split-5_cp_letter-V" class="summary-letter"><b>V</b></a>
+ &nbsp; 
+<a href="#index_split-5_cp_letter-W" class="summary-letter"><b>W</b></a>
+ &nbsp; 
+<a href="#index_split-5_cp_letter-Y" class="summary-letter"><b>Y</b></a>
+ &nbsp; 
+</td></tr></table>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="make_18.html#GNU-Free-Documentation-License" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="make_26.html#Name-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="make.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="make_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="make_19.html#Concept-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="make_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>October 20, 2021</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
